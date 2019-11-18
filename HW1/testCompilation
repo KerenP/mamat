@@ -1,0 +1,10 @@
+#!/bin/bash
+
+gcc -g -Wall -o "$2" "$2.c" > "$1" 2>&1
+if grep -e warning -e error log > /dev/null 2>&1
+then
+echo "Compile failed"
+exit 1
+fi
+echo "Compile succeeded"
+exit 0

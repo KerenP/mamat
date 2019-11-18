@@ -1,0 +1,25 @@
+1: hello world
+Compile succeeded
+Out files match
+Memory test passed
+2: hello world with warnings
+Compile failed
+Out files match
+Memory test passed
+3: echo test
+Compile succeeded
+Out files match
+Memory test passed
+4: echo failtest
+Compile succeeded
+Out files mismatch
+Memory test passed
+5: memleaks pass
+Compile succeeded
+Out files match
+Memory test passed
+6: memleaks fail
+Compile succeeded
+Out files match
+Memory test failed
+15 tests passed out of 18

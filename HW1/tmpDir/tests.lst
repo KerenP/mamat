@@ -1,0 +1,7 @@
+hello world@helloworld@/dev/zero@inout/helloworld.out
+hello world with warnings@warnings@/dev/zero@inout/helloworld.out
+echo test@myecho@inout/echo.in@inout/echo.out
+echo failtest@myecho@inout/echo.in@inout/helloworld.out
+memleaks pass@memleaks@inout/memleaks.6.in@inout/memleaks.6.out
+memleaks fail@memleaks@inout/memleaks.11.in@inout/memleaks.11.out
+
