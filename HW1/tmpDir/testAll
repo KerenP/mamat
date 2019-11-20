@@ -1,0 +1,29 @@
+#!/bin/bash
+if [ -d logFiles ]
+then
+echo "logFiles already exists in this directory"
+exit 1
+fi
+mkdir logFiles
+count=1
+#description=0
+sum_success=0
+for line in "$1"
+do
+#description=`awk -F'@' 'NR==$count {print $1}' "$1"`
+description=`echo $line | awk -F'@' {print $1}`
+echo $description
+name=`awk -F'@' 'NR==$count {print $2}' "$1"`
+in=`awk -F'@' 'NR==$count {print $3}' "$1"`
+echo $name
+out=`awk -F'@' 'NR==$count {print $4}' "$1"`
+echo "${count}: ${descroption}" 
+res_comp=`testCompilation logFiles/${count}.compile.log name`
+res_inout=`testInOut logFiles/${count}.inout.log name in out`
+res_mem=`testMemLeaks logFiles/${count}.memory.log name in`
+sum_success=( ${sum_success}+${res_comp}+${res_inout}+${res_mem} )
+((count++))
+done
+echo "Num of successful tests= ${sum_success}"
+echo "Num of total tests= (${count}*3)"
+
