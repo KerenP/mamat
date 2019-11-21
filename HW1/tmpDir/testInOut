@@ -1,8 +1,15 @@
 #!/bin/bash
-./"$2" <"$3" >"$1"
+#*************************************************************************************************************
+#* function name : testInOut
+#* Description   : run a program given in $2 with an input file given in $3, direct output to log file given
+#  in $1 and compare it with the expected output file given in $4
+#* Parameters    : log file path, program path, input file path, expected output file path
+#* return value  : print if the recieved output was the same as the expected output 
+#**************************************************************************************************************
+
+./"$2" <"$3" >"$1" #redirection of input into program and output into log file
 diff "$1" "$4" > /dev/null 2>&1
-if (( $?==0 ))
-then
+if (( $?==0 )) #check the return value of diff and print is files match or not
 echo "Out files match"
 exit 0
 fi
