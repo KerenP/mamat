@@ -10,6 +10,7 @@
 ./"$2" <"$3" >"$1" #redirection of input into program and output into log file
 diff "$1" "$4" > /dev/null 2>&1
 if (( $?==0 )) #check the return value of diff and print is files match or not
+then 
 echo "Out files match"
 exit 0
 fi
