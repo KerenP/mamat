@@ -1,0 +1,8 @@
+warnings.c: In function ‘main’:
+warnings.c:2:5: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+     printf("hellow, world!\n");
+     ^
+warnings.c:2:5: warning: incompatible implicit declaration of built-in function ‘printf’ [enabled by default]
+warnings.c:3:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^

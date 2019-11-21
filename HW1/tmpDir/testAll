@@ -8,22 +8,32 @@ mkdir logFiles
 count=1
 #description=0
 sum_success=0
-for line in "$1"
+#for line in "$1"
+while IFS= read -r line
 do
-#description=`awk -F'@' 'NR==$count {print $1}' "$1"`
-description=`echo $line | awk -F'@' {print $1}`
-echo $description
-name=`awk -F'@' 'NR==$count {print $2}' "$1"`
-in=`awk -F'@' 'NR==$count {print $3}' "$1"`
-echo $name
-out=`awk -F'@' 'NR==$count {print $4}' "$1"`
-echo "${count}: ${descroption}" 
-res_comp=`testCompilation logFiles/${count}.compile.log name`
-res_inout=`testInOut logFiles/${count}.inout.log name in out`
-res_mem=`testMemLeaks logFiles/${count}.memory.log name in`
-sum_success=( ${sum_success}+${res_comp}+${res_inout}+${res_mem} )
+if [ -z "$line" ]
+then
+break
+fi
+
+description=`echo $line | awk -F'@' '{print $1}'`
+name=`echo $line | awk -F'@' '{print $2}'`
+in=`echo $line | awk -F'@' '{print $3}'`
+out=`echo $line | awk -F'@' '{print $4}'`
+
+echo ""$count":"$description"" 
+testCompilation logFiles/$count.compile.log $name
+res_comp=$?
+
+testInOut logFiles/$count.inout.log $name $in $out
+res_inout=$?
+
+testMemLeaks logFiles/$count.memory.log $name $in
+res_mem=$?
+
+sum_success="$(( 3+$sum_success-$res_comp-$res_inout-$res_mem ))"
 ((count++))
-done
+done < "$1"
 echo "Num of successful tests= ${sum_success}"
-echo "Num of total tests= (${count}*3)"
+echo "Num of total tests= "$((($count-1)*3))""
 

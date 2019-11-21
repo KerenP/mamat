@@ -1,10 +1,10 @@
 #!/bin/bash
-echo "$3"
-"$2" < "$3" > "$1"
-if diff "$1" "$4" > /dev/null 2>&1
+./"$2" <"$3" >"$1"
+diff "$1" "$4" > /dev/null 2>&1
+if (( $?==0 ))
 then
-echo "Out files mismatch"
-exit 1
-fi
 echo "Out files match"
 exit 0
+fi
+echo "Out files mismatch"
+exit 1
