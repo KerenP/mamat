@@ -1,39 +1,43 @@
 #!/bin/bash
-if [ -d logFiles ]
+#
+#****************************************************************
+#* function name: testAll
+#* description  : get file that contains a list of codes to check
+#  and run the following tests on each one: testCompilation,
+#  testInOut, testMemLeaks
+#* parameter    : file including list of codes to check
+#* return value : print the amount of successful and total tests
+#****************************************************************
+if [ -d logFiles ] #check if directory exists, if not create it
 then
 echo "logFiles already exists in this directory"
 exit 1
 fi
 mkdir logFiles
 count=1
-#description=0
 sum_success=0
-#for line in "$1"
-while IFS= read -r line
+while IFS= read -r line #scan the given file line by line
 do
-if [ -z "$line" ]
+if [ -z "$line" ] #until empty line occurre
 then
 break
 fi
-
+#separate line to its 4 fields
 description=`echo $line | awk -F'@' '{print $1}'`
 name=`echo $line | awk -F'@' '{print $2}'`
 in=`echo $line | awk -F'@' '{print $3}'`
 out=`echo $line | awk -F'@' '{print $4}'`
-
 echo ""$count":"$description"" 
+#run 3 tests, for each one check if successful
 testCompilation logFiles/$count.compile.log $name
 res_comp=$?
-
 testInOut logFiles/$count.inout.log $name $in $out
 res_inout=$?
-
 testMemLeaks logFiles/$count.memory.log $name $in
 res_mem=$?
-
+#sums and print all successful tests and total executed tests
 sum_success="$(( 3+$sum_success-$res_comp-$res_inout-$res_mem ))"
 ((count++))
 done < "$1"
 echo "Num of successful tests= ${sum_success}"
 echo "Num of total tests= "$((($count-1)*3))""
-
