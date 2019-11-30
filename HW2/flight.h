@@ -7,7 +7,7 @@
 #include "ex2.h"
 struct flight;
 typedef struct flight* pFlight;
-pFlight createFlight(int f_Num , FlightType f_type, char* dest, BOOL emergency );
+pFlight createFlight(int f_Num , FlightType f_type, char dest[4], BOOL emergency );
 void destroyFlight(pFlight f);
 void printFlight(pFlight f);
 #endif //HW2_FLIGHT_H
