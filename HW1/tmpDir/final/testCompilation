@@ -1,0 +1,15 @@
+#!/bin/bash
+#**********************************************************************************************
+#* function name : testCompilation
+#* Description   : Compile the program given by $2 and send it's output to a log file given by $1
+#* Parameters    : name of program to compile and name of log file to direct output 
+#* return value  : print if compilation was successful or not
+#**********************************************************************************************
+gcc -g -Wall -o "$2" "$2.c" > "$1" 2>&1 
+if grep -e warning -e error log > /dev/null 2>&1
+then
+echo "Compile failed"
+exit 1
+fi
+echo "Compile succeeded"
+exit 0

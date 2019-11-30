@@ -1,0 +1,27 @@
+#!/bin/bash
+i=1
+while (( i <7 ))
+do
+diff "/home/keren.peleg/mamat/HW1/tmpDir/checkFinal/logFiles/$i.compile.log" "logr/logs/$i.compile.log" > /dev/null 2>&1
+if (( $?==0 ))
+then
+echo "OK"
+else
+echo "NOT GOOD"
+fi
+diff "/home/keren.peleg/mamat/HW1/tmpDir/checkFinal/logFiles/$i.inout.log" "logr/logs/$i.inout.log" > /dev/null 2>&1
+if (( $?==0 ))
+then
+echo "OK"
+else
+echo "NOT GOOD"
+fi
+diff "/home/keren.peleg/mamat/HW1/tmpDir/checkFinal/logFiles/$i.memory.log" "logr/logs/$i.memory.log" > /dev/null 2>&1
+if (( $?==0 ))
+then
+echo "OK"
+else
+echo "NOT GOOD"
+fi
+((i++))
+done
