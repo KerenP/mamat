@@ -6,12 +6,12 @@
 #include <string.h>
 #include "runway.h"
 #include "ex2.h"
-struct flightList; //?
-typedef struct flightList* pFlightList;
-struct flightList{
+struct _flightList;
+typedef struct _flightList* pFlightList;
+typedef struct _flightList{
     pFlight cur_flight;
     pFlightList next_flight;
-};
+} flightList;
 struct runway{
     int r_num;
     FlightType r_type;
@@ -50,7 +50,8 @@ BOOL isFlightExists(pRunway r, int f_num){
     return FALSE;
 }
 int getFlightNum(pRunway r){
-    //TODO: add catch for possible failure to return -1
+    if(r == NULL)
+        return -1;
     pFlightList ptr;
     ptr = r->flight_list;
     int count_flight=0;
@@ -61,6 +62,8 @@ int getFlightNum(pRunway r){
     return count_flight;
 }
 int getEmergencyNum(pRunway r){
+    if(r == NULL)
+        return -1;
     pFlightList ptr;
     ptr = r->flight_list;
     int count_emergency=0;
@@ -70,4 +73,27 @@ int getEmergencyNum(pRunway r){
         ptr=ptr->next_flight;
     }
     return count_emergency;
+}
+Result addFlight(pRunway r, pFlight f){
+    if (r!=NULL && f!=NULL){
+        if ((!isFlightExists(r,getFlightID(f))) && (getFlightType(f)==r->r_type)){
+            pFlight ptr=createFlight(getFlightID(f),getFlightType(f),getDestination(f),isEmergency(f));
+            flightList new_flight;
+            new_flight.cur_flight=ptr;
+            if (isEmergency(f)){
+                new_flight.next_flight=r->flight_list;
+                r->flight_list=&new_flight;
+            }
+            else {
+                new_flight.next_flight = NULL;
+                pFlightList end = r->flight_list;
+                while (end->next_flight) {
+                    end = end->next_flight;
+                }
+                end->next_flight = &new_flight;
+            }
+            return SUCCESS;
+        }
+    }
+    return FAILURE;
 }

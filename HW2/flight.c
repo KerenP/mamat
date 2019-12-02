@@ -9,7 +9,7 @@
 struct flight {
     int f_Num;
     FlightType  f_type;
-    char* dest[4]; // TODO: Add define
+    char dest[4]; // TODO: Add define
     BOOL emergency;
 };
 pFlight createFlight(int f_Num , FlightType f_type, char dest[4], BOOL emergency ){
@@ -46,4 +46,7 @@ FlightType getFlightType(pFlight f){
 }
 BOOL isEmergency(pFlight f){
     return f->emergency;
+}
+char* getDestination(pFlight f){
+    return f->dest;//TODO: use strcpy
 }

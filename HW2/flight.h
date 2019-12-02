@@ -13,4 +13,5 @@ void printFlight(pFlight f);
 int getFlightID(pFlight f);
 FlightType getFlightType(pFlight f);
 BOOL isEmergency(pFlight f);
+char* getDestination(pFlight f);
 #endif //HW2_FLIGHT_H
