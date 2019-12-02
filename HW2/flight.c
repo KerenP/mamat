@@ -38,3 +38,12 @@ void printFlight(pFlight f){
         return;
     printf("Flight %d %c %s %c", f->f_Num, (f->f_type == DOMESTIC ? 'D' : 'I'), f->dest, (f->emergency ? 'E' : 'R'));
 }
+int getFlightID(pFlight f){
+    return f->f_Num;
+}
+FlightType getFlightType(pFlight f){
+    return f->f_type;
+}
+BOOL isEmergency(pFlight f){
+    return f->emergency;
+}
