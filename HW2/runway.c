@@ -112,7 +112,7 @@ Result removeFlight(pRunway r, int f_num){
         pFlightList current = r->flight_list;
         pFlightList *points_to_current = &(r->flight_list);
         while (current != NULL) {
-            if (getFlightNum(current->cur_flight) == f_num) {
+            if (getFlightID(current->cur_flight) == f_num) {
                 *points_to_current = current->next_flight;
                 free(current);
                 return SUCCESS;
@@ -125,7 +125,7 @@ Result removeFlight(pRunway r, int f_num){
 Result depart(pRunway r){
     if(r==NULL || r->flight_list == NULL)
         return FAILURE;
-    return removeFlight(r, getFlightNum((r->flight_list)->cur_flight));
+    return removeFlight(r, getFlightID((r->flight_list)->cur_flight));
 }
 void printRunway(pRunway r){
     if(r==NULL || getFlightNum(r)==-1){
