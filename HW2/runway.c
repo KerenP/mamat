@@ -85,6 +85,11 @@ Result addFlight(pRunway r, pFlight f){
             pFlight ptr=createFlight(getFlightID(f),getFlightType(f),getDestination(f),isEmergency(f));
             flightList new_flight;
             new_flight.cur_flight=ptr;
+            new_flight.next_flight=NULL;
+            if(r->flight_list == NULL) {
+                r->flight_list = &new_flight;
+                return SUCCESS;
+            }
             if (isEmergency(f)){
                 pFlightList curr = r->flight_list;
                 while (isEmergency((curr->next_flight)->cur_flight)) {
