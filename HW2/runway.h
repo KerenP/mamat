@@ -16,7 +16,7 @@ BOOL isFlightExists(pRunway r, int f_num);
 int getFlightNum(pRunway r);
 int getEmergencyNum(pRunway r);
 Result addFlight(pRunway r, pFlight f);
-Result removeFlight(pRunway, int f_num);
-Result depart(pRunway);
-void printRunway(pRunway);
+Result removeFlight(pRunway r, int f_num);
+Result depart(pRunway r);
+void printRunway(pRunway r);
 #endif //HW2_RUNWAY_H

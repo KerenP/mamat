@@ -36,7 +36,7 @@ void destroyFlight(pFlight f){
 void printFlight(pFlight f){
     if(f == NULL)
         return;
-    printf("Flight %d %c %s %c", f->f_Num, (f->f_type == DOMESTIC ? 'D' : 'I'), f->dest, (f->emergency ? 'E' : 'R'));
+    printf("Flight %d %c %s %c\n", f->f_Num, (f->f_type == DOMESTIC ? 'D' : 'I'), f->dest, (f->emergency ? 'E' : 'R'));
 }
 int getFlightID(pFlight f){
     return f->f_Num;
@@ -49,4 +49,4 @@ BOOL isEmergency(pFlight f){
 }
 char* getDestination(pFlight f){
     return f->dest;//TODO: use strcpy
-}
+}//TODO: Check if all the fields are correctly defined

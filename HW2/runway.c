@@ -32,8 +32,13 @@ pRunway createRunway(int r_num, FlightType r_type){
 void destroyRunway(pRunway r){
     if(r == NULL)
         return;
-    if(r->flight_list != NULL)
-        free(r->flight_list);
+    if(r->flight_list != NULL) {
+        pFlightList curr = r->flight_list;
+        while (curr!=NULL){
+            destroyFlight(curr->cur_flight);
+            curr=curr->next_flight;
+        }
+    }
     free(r);
 }
 BOOL isFlightExists(pRunway r, int f_num){
@@ -81,8 +86,12 @@ Result addFlight(pRunway r, pFlight f){
             flightList new_flight;
             new_flight.cur_flight=ptr;
             if (isEmergency(f)){
-                new_flight.next_flight=r->flight_list;
-                r->flight_list=&new_flight;
+                pFlightList curr = r->flight_list;
+                while (isEmergency((curr->next_flight)->cur_flight)) {
+                    curr = curr->next_flight;
+                }
+                new_flight.next_flight = curr->next_flight;
+                curr->next_flight = &new_flight;
             }
             else {
                 new_flight.next_flight = NULL;
@@ -96,4 +105,36 @@ Result addFlight(pRunway r, pFlight f){
         }
     }
     return FAILURE;
+}
+Result removeFlight(pRunway r, int f_num){
+        if (r==NULL || r->flight_list==NULL)
+            return FAILURE;
+        pFlightList current = r->flight_list;
+        pFlightList *points_to_current = &(r->flight_list);
+        while (current != NULL) {
+            if (getFlightNum(current->cur_flight) == f_num) {
+                *points_to_current = current->next_flight;
+                free(current);
+                return SUCCESS;
+            }
+            points_to_current=&(current->next_flight);
+            current = current->next_flight;
+        }
+        return FAILURE;
+    }
+Result depart(pRunway r){
+    if(r==NULL || r->flight_list == NULL)
+        return FAILURE;
+    return removeFlight(r, getFlightNum((r->flight_list)->cur_flight));
+}
+void printRunway(pRunway r){
+    if(r==NULL || getFlightNum(r)==-1){
+        return;
+    }
+    int f=getFlightNum(r);
+    printf("Runway %d %s\n %d flights are waiting:\n",r->r_num,(r->r_type == DOMESTIC ? "domestic" : "international"),f);
+    pFlightList ptr=r->flight_list;
+    while(ptr){
+        printFlight(ptr->cur_flight);
+    }
 }
