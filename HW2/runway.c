@@ -35,7 +35,7 @@ void destroyRunway(pRunway r){
     if(r->flight_list != NULL) {
         pFlightList curr = r->flight_list;
         while (curr!=NULL){
-            destroyFlight(curr->cur_flight);
+            removeFlight(r,getFlightID(curr->cur_flight));
             curr=curr->next_flight;
         }
     }
@@ -83,28 +83,35 @@ Result addFlight(pRunway r, pFlight f){
     if (r!=NULL && f!=NULL){
         if ((!isFlightExists(r,getFlightID(f))) && (getFlightType(f)==r->r_type)){
             pFlight ptr=createFlight(getFlightID(f),getFlightType(f),getDestination(f),isEmergency(f));
-            flightList new_flight;
-            new_flight.cur_flight=ptr;
-            new_flight.next_flight=NULL;
+            pFlightList new_flight;
+            new_flight = (pFlightList)malloc(sizeof(flightList));
+            if(!new_flight)
+                return FAILURE;
+            new_flight->cur_flight=ptr;
+            new_flight->next_flight=NULL;
             if(r->flight_list == NULL) {
-                r->flight_list = &new_flight;
+                r->flight_list = new_flight;
                 return SUCCESS;
             }
             if (isEmergency(f)){
                 pFlightList curr = r->flight_list;
-                while (isEmergency((curr->next_flight)->cur_flight)) {
+                if(!isEmergency(curr->cur_flight)){
+                    new_flight->next_flight=curr;
+                    r->flight_list=new_flight;
+                    return SUCCESS;
+                }
+                while ( curr->next_flight!=NULL && isEmergency((curr->next_flight)->cur_flight)) {
                     curr = curr->next_flight;
                 }
-                new_flight.next_flight = curr->next_flight;
-                curr->next_flight = &new_flight;
+                new_flight->next_flight = curr->next_flight;
+                curr->next_flight = new_flight;
             }
             else {
-                new_flight.next_flight = NULL;
                 pFlightList end = r->flight_list;
                 while (end->next_flight) {
                     end = end->next_flight;
                 }
-                end->next_flight = &new_flight;
+                end->next_flight = new_flight;
             }
             return SUCCESS;
         }
@@ -119,6 +126,7 @@ Result removeFlight(pRunway r, int f_num){
         while (current != NULL) {
             if (getFlightID(current->cur_flight) == f_num) {
                 *points_to_current = current->next_flight;
+                destroyFlight(current->cur_flight);
                 free(current);
                 return SUCCESS;
             }
@@ -137,9 +145,10 @@ void printRunway(pRunway r){
         return;
     }
     int f=getFlightNum(r);
-    printf("Runway %d %s\n %d flights are waiting:\n",r->r_num,(r->r_type == DOMESTIC ? "domestic" : "international"),f);
+    printf("Runway %d %s\n%d flights are waiting:\n",r->r_num,(r->r_type == DOMESTIC ? "domestic" : "international"),f);
     pFlightList ptr=r->flight_list;
     while(ptr){
         printFlight(ptr->cur_flight);
+        ptr=ptr->next_flight;
     }
 }
