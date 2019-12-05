@@ -19,4 +19,6 @@ Result addFlight(pRunway r, pFlight f);
 Result removeFlight(pRunway r, int f_num);
 Result depart(pRunway r);
 void printRunway(pRunway r);
+int getRunwayNum(pRunway r);
+FlightType getRunwayType(pRunway r);
 #endif //HW2_RUNWAY_H

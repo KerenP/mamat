@@ -152,3 +152,9 @@ void printRunway(pRunway r){
         ptr=ptr->next_flight;
     }
 }
+int getRunwayNum(pRunway r){
+    return r->r_num;
+}
+FlightType getRunwayType(pRunway r){
+    return r->r_type;
+}
