@@ -23,6 +23,7 @@ Result addRunway(int r_num, FlightType r_type){
         if (getRunwayNum(curr->cur_runway) ==r_num){
             return FAILURE;
         }
+        curr=curr->next_runway;
     }
     pRunway pNewRunway = createRunway(r_num, r_type);
     if (!pNewRunway){
@@ -84,8 +85,9 @@ Result addFlightToAirport(int f_num, FlightType f_type, char dest[4], BOOL emerg
                     emptiest_runway = curr;
                 }
             }
-            curr = curr->next_runway;
+
         }
+        curr = curr->next_runway;
     }
     if (runway_found){
         pFlight f=createFlight(f_num, f_type, dest, emergency);
@@ -180,6 +182,7 @@ void printAirport(){
     printf("Airport status:\n");
     while(curr_runway){
         printRunway(curr_runway->cur_runway);
+        curr_runway=curr_runway->next_runway;
     }
 }
 void destroyAirport(){
