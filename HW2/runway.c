@@ -6,8 +6,8 @@
 #include <string.h>
 #include "runway.h"
 #include "ex2.h"
-struct _flightList;
-typedef struct _flightList* pFlightList;
+//struct _flightList;
+//typedef struct _flightList* pFlightList;
 typedef struct _flightList{
     pFlight cur_flight;
     pFlightList next_flight;
@@ -157,4 +157,16 @@ int getRunwayNum(pRunway r){
 }
 FlightType getRunwayType(pRunway r){
     return r->r_type;
+}
+pFlightList getNextFlight(pFlightList flightNode){
+    return flightNode->next_flight;
+}
+pFlight getFlight(pFlightList flightNode){
+    return flightNode->cur_flight;
+}
+pFlightList getFlightList(pRunway r){
+    if(r){
+        return r->flight_list;
+    }
+    return NULL;
 }

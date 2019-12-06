@@ -3,9 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "flight.h"
-#include "ex2.h"
 struct flight {
     int f_Num;
     FlightType  f_type;
@@ -50,3 +48,15 @@ BOOL isEmergency(pFlight f){
 char* getDestination(pFlight f){
     return f->dest;//TODO: use strcpy
 }//TODO: Check if all the fields are correctly defined
+Result setDestination(pFlight f, char new_dest[4]){
+    if(!f){
+        return FAILURE;
+    }
+    for (int i; i<3; i++){
+        if ( new_dest[i]<65 || new_dest[i]>90){
+            return FAILURE;
+        }
+    }
+    strcpy(f->dest,new_dest);
+    return SUCCESS;
+}

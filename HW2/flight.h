@@ -4,6 +4,7 @@
 
 #ifndef HW2_FLIGHT_H
 #define HW2_FLIGHT_H
+#include <string.h>
 #include "ex2.h"
 struct flight;
 typedef struct flight* pFlight;
@@ -14,4 +15,5 @@ int getFlightID(pFlight f);
 FlightType getFlightType(pFlight f);
 BOOL isEmergency(pFlight f);
 char* getDestination(pFlight f);
+Result setDestination(pFlight f, char new_dest[4]);
 #endif //HW2_FLIGHT_H
