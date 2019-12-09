@@ -1,6 +1,4 @@
-//
-// Created by Marina on 30/11/19.
-//
+//flight.h
 
 #ifndef HW2_FLIGHT_H
 #define HW2_FLIGHT_H

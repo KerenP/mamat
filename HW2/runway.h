@@ -1,6 +1,4 @@
-//
-// Created by Keren on 02/12/2019.
-//
+//runway.h
 
 #ifndef HW2_RUNWAY_H
 #define HW2_RUNWAY_H
