@@ -3,7 +3,6 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "runway.h"
 #include "ex2.h"
 //struct _flightList;

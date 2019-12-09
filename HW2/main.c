@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "airport.h"
 #define MAX_LINE_SIZE 256
-BOOL checkDestination(char dest[4]);
+
 
 int main() {
     char szLine[MAX_LINE_SIZE];
@@ -142,13 +142,6 @@ int main() {
     return 0;
 }
 
-//FUNCTIONS:
-BOOL checkDestination(char dest[4]){
-    for (int i=0; i<3; i++) {
-        if (dest[i] < 65 || dest[i] > 90) {
-            return FALSE;
-        }
-    }
-    return TRUE;
-}
+
+
 

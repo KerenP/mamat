@@ -78,6 +78,9 @@ Result addFlightToAirport(int f_num, FlightType f_type, char dest[4], BOOL emerg
         }
         if (getRunwayType(curr->cur_runway)==f_type) {
             runway_found=TRUE;
+            if(getRunwayType(emptiest_runway->cur_runway)!=f_type){ //New: Check if the emptiest runway is actually the right type
+                emptiest_runway=curr;
+            }
             if (getFlightNum(curr->cur_runway) < getFlightNum(emptiest_runway->cur_runway)) {
                 emptiest_runway = curr;
             } else if (getFlightNum(curr->cur_runway) == getFlightNum(emptiest_runway->cur_runway)) {
@@ -124,7 +127,7 @@ Result departAirport(){
 }
 Result changeDest(char dest[4], char new_dest[4]){
     for (int i=0; i<3; i++){//TODO: add this to other input checks or make this a function
-        if (dest[i]<65 || dest[i]>90 || new_dest[i]<65 || new_dest[i]>90){
+        if (dest[i]<'A' || dest[i]>'Z' || new_dest[i]<'A' || new_dest[i]>'Z'){
             return FAILURE;
         }
     }
@@ -146,19 +149,27 @@ Result changeDest(char dest[4], char new_dest[4]){
     return SUCCESS;
 }
 Result delay(char dest[4]){
-    for (int i=0; i<3; i++){
-        if (dest[i]<65 || dest[i]>90){
+    BOOL delayed [MAX_ID];
+    int i;
+    for( i=1; i<MAX_ID;i++){
+        delayed[i]=FALSE;
+    }
+    for ( i=0; i<3; i++){
+        if (dest[i]<'A' || dest[i]>'Z'){
             return FAILURE;
         }
     }
     pRunwayNode curr_runway=head;
     pFlightList curr_flight;
+    pFlightList next_flight;
     pFlight f;
     while(curr_runway){
         curr_flight=getFlightList(curr_runway->cur_runway);
         while(curr_flight){
             f=getFlight(curr_flight);
-            if(strcmp(getDestination(f),dest) == 0){
+            next_flight=getNextFlight(curr_flight); //new
+            if(strcmp(getDestination(f),dest) == 0 && delayed[getFlightID(f)]!=TRUE){ //Flag added to check if flight was previously delayed
+                delayed[getFlightID(f)]=TRUE;
                 pFlight delayed_flight=createFlight(getFlightID(f), getFlightType(f), getDestination(f), isEmergency(f));
                 Result flight_removed= removeFlight(curr_runway->cur_runway,getFlightID(f));
                 if (!delayed_flight || !flight_removed){
@@ -168,22 +179,24 @@ Result delay(char dest[4]){
                     return  FAILURE;
                 }
             }
-            curr_flight=getNextFlight(curr_flight);
+            //curr_flight=getNextFlight(curr_flight);//This does not work well
+            curr_flight=next_flight;
         }
         curr_runway=curr_runway->next_runway;
     }
     return  SUCCESS;
 }
 void printAirport(){
-    if(!head){
+    /*if(!head){
         return;
-    }
+    }*/
     pRunwayNode curr_runway=head;
     printf("Airport status:\n");
     while(curr_runway){
         printRunway(curr_runway->cur_runway);
         curr_runway=curr_runway->next_runway;
     }
+    printf("\n");
 }
 void destroyAirport(){
     pRunwayNode curr_runway=head;
