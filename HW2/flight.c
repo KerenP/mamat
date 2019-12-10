@@ -23,7 +23,6 @@ dest - String of constant length 4 containing flight destination.
 return values:
 TRUE if dest is a valid destination and FALSE if not.
 ***********************************************************/
-
 BOOL checkDestination(char dest[DEST_SIZE]){
     for (int i=0; i<DEST_SIZE-1; i++) {
         if (dest[i] < 'A' || dest[i] > 'Z') {
@@ -67,7 +66,6 @@ emergency - Boolean indicating if its an emergency flight.
 return values:
 Pointer to flight struct of type PFlight.
 ***********************************************************/
-
 pFlight createFlight(int f_Num , FlightType f_type, char dest[4], BOOL emergency ){
     pFlight f;
     if (!validFlight(f_Num,f_type,dest,emergency))
@@ -139,9 +137,8 @@ BOOL isEmergency(pFlight f){
     return f->emergency;
 }
 char* getDestination(pFlight f){
-    return f->dest;//TODO: use strcpy
-}//TODO: Check if all the fields are correctly defined
-
+    return f->dest;
+}
 /***********************************************************
 function name: setDestination
 
@@ -154,7 +151,6 @@ f- A pointer to a flight which destination we want to change.
 return values:
 SUCCESS or FAILURE to change the flight destination
 ***********************************************************/
-
 Result setDestination(pFlight f, char new_dest[4]){
     if(!f || !checkDestination(new_dest)){
         return FAILURE;

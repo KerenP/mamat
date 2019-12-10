@@ -1,21 +1,31 @@
-//
-// Created by Keren on 05/12/2019.
-//
+//airport.c
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "airport.h"
-/*struct _flightList;
-typedef struct _flightList* pFlightList;*/
+
 struct _runwayNode;
 typedef struct _runwayNode* pRunwayNode;
 typedef struct _runwayNode{
     pRunway cur_runway;
     pRunwayNode next_runway;
 } runwayNode;
-pRunwayNode head=NULL; //TODO: Maybe change to global variable
+pRunwayNode head=NULL;
+/***********************************************************
+function name: addRunway
+
+description:
+Add a new runway record with given num and type.
+
+parameters:
+r_num - Runway number.
+r_type - Runway type - DOMESTIC / INTERNATIONAL.
+
+return values:
+Result parameter - FAILURE / SUCCESS.
+***********************************************************/
 Result addRunway(int r_num, FlightType r_type){
-    if (r_num<1 || r_num>MAX_ID || (r_type!=DOMESTIC && r_type!=INTERNATIONAL)){//TODO: check flightype???
+    if (r_num<1 || r_num>MAX_ID || (r_type!=DOMESTIC && r_type!=INTERNATIONAL)){
         return FAILURE;
     }
     pRunwayNode curr = head;
@@ -47,6 +57,18 @@ Result addRunway(int r_num, FlightType r_type){
     }
     return SUCCESS;
 }
+/***********************************************************
+function name: removeRunway
+
+description:
+The function removes the runway with the given number, and all of its flights.
+
+parameters:
+r_num - The ID of the runway to be removed.
+
+return values:
+SUCCESS if the runway was removed and FAILURE if an error occurred.
+***********************************************************/
 Result removeRunway(int r_num){
     if (r_num<1 || r_num>MAX_ID || !head){
         return FAILURE;
@@ -65,6 +87,21 @@ Result removeRunway(int r_num){
     }
     return FAILURE;
 }
+/***********************************************************
+function name: addFlightToAirport
+
+description:
+The function adds the given flight to a runway according to the rules specified in the instructions
+
+parameters:
+f_num - The ID of the flight to be added.
+f_type - Flight type - DOMESTIC / INTERNATIONAL.
+dest - Array of 3 capital letters.
+emergency - BOOL parameter - TRUE if flight is emergency, FALSE if not.
+
+return values:
+SUCCESS if the flight was added and FAILURE if an error occurred.
+***********************************************************/
 Result addFlightToAirport(int f_num, FlightType f_type, char dest[4], BOOL emergency){
     if (f_num<1 || f_num>MAX_ID) {
         return FAILURE;
@@ -100,6 +137,21 @@ Result addFlightToAirport(int f_num, FlightType f_type, char dest[4], BOOL emerg
     }
     return FAILURE;
 }
+/***********************************************************
+function name: departAirport
+
+description:
+remove first flight from a runway chosen according to given priority list:
+the runway that contains largest num of emergency flights.
+if none exists, the runway with largest number of flights.
+the runway with smallest ID.
+
+parameters:
+NONE.
+
+return values:
+SUCCESS if the flight was removed and FAILURE if an error occurred.
+***********************************************************/
 Result departAirport(){
     pRunwayNode most_emergency=head;
     pRunwayNode curr=head;
@@ -125,15 +177,26 @@ Result departAirport(){
     }
     return FAILURE;
 }
+/***********************************************************
+function name: changeDest
+
+description:
+search in flight list for given destination and change it to a new value (given).
+
+parameters:
+dest - current flight destination, array of 3 capital letters.
+new_dest - updated flight destination, array of 3 capital letters.
+
+return values:
+SUCCESS if destination was changed and FAILURE if an error occurred.
+***********************************************************/
 Result changeDest(char dest[4], char new_dest[4]){
-    for (int i=0; i<3; i++){//TODO: add this to other input checks or make this a function
-        if (dest[i]<'A' || dest[i]>'Z' || new_dest[i]<'A' || new_dest[i]>'Z'){
-            return FAILURE;
-        }
+    if(!checkDestination(dest) || !checkDestination(new_dest)){
+        return FAILURE;
     }
     pRunwayNode curr_runway=head;
     pFlightList curr_flight;
-    if(!curr_runway){//TODO:what to do if no runway exists?(probably SUCCESS)
+    if(!curr_runway){
         return FAILURE;
     }
     while(curr_runway){
@@ -148,6 +211,18 @@ Result changeDest(char dest[4], char new_dest[4]){
     }
     return SUCCESS;
 }
+/***********************************************************
+function name: delay
+
+description:
+move flights with given destination to the end of their runway list.
+
+parameters:
+dest - flight destination, array of 3 capital letters.
+
+return values:
+SUCCESS if flight was delayed and FAILURE if an error occurred.
+***********************************************************/
 Result delay(char dest[4]){
     BOOL delayed [MAX_ID];
     int i;
@@ -167,7 +242,7 @@ Result delay(char dest[4]){
         curr_flight=getFlightList(curr_runway->cur_runway);
         while(curr_flight){
             f=getFlight(curr_flight);
-            next_flight=getNextFlight(curr_flight); //new
+            next_flight=getNextFlight(curr_flight);
             if(strcmp(getDestination(f),dest) == 0 && delayed[getFlightID(f)]!=TRUE){ //Flag added to check if flight was previously delayed
                 delayed[getFlightID(f)]=TRUE;
                 pFlight delayed_flight=createFlight(getFlightID(f), getFlightType(f), getDestination(f), isEmergency(f));
@@ -179,17 +254,25 @@ Result delay(char dest[4]){
                     return  FAILURE;
                 }
             }
-            //curr_flight=getNextFlight(curr_flight);//This does not work well
             curr_flight=next_flight;
         }
         curr_runway=curr_runway->next_runway;
     }
     return  SUCCESS;
 }
+/***********************************************************
+function name: printAirport
+
+description:
+print all runways and all their associated flights.
+
+parameters:
+NONE.
+
+return values:
+NONE.
+***********************************************************/
 void printAirport(){
-    /*if(!head){
-        return;
-    }*/
     pRunwayNode curr_runway=head;
     printf("Airport status:\n");
     while(curr_runway){
@@ -198,6 +281,18 @@ void printAirport(){
     }
     printf("\n");
 }
+/***********************************************************
+function name: destroyAirport
+
+description:
+free all runways and all their associated flights.
+
+parameters:
+NONE.
+
+return values:
+NONE.
+***********************************************************/
 void destroyAirport(){
     pRunwayNode curr_runway=head;
     pRunwayNode next_runway_node;

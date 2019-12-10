@@ -6,7 +6,18 @@
 #include "airport.h"
 #define MAX_LINE_SIZE 256
 
+/***********************************************************
+function name: main
 
+description:
+Get commands from stdin and executes operations on airport accordingly
+
+parameters:
+NONE.
+
+return values:
+0 - when the program ends.
+***********************************************************/
 int main() {
     char szLine[MAX_LINE_SIZE];
     char *delimiters = " \t\n";
@@ -24,7 +35,9 @@ int main() {
     int check_emergency;
     Result check_func;
     while (fgets(szLine, MAX_LINE_SIZE, stdin)) {
-        pszCommand = strtok(szLine, delimiters);
+        if (!(pszCommand = strtok(szLine, delimiters))){
+            continue;
+        }
         if (strcmp(pszCommand, "Insert") == 0) {
             pszRunwayNum = strtok(NULL, delimiters);
             pszRunwayType = strtok(NULL, delimiters);
