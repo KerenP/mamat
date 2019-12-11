@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+#****************************************************************
+#* function name: count_lines
+#* description  : sums total number of lines in all files
+#  contained in given path and its sub directories recursively
+#* parameter    : directory path
+#* return value : prints sum of lines in all sub files
+#****************************************************************
+dir_content="$1"
+lines_sum=0
+#read current directory content line by line
+for line in "$dir_content"/*
+do
+	#if file, sum its number of lines and add to the total sum
+	if [[ -f "$line" ]]
+	then
+		curr_line=`wc -l "$line" | awk '{print $1}'`
+		lines_sum=$(( $lines_sum+$curr_line ))
+	#if directory, run this script again with current line as its
+	#parameter, and add output to total sum
+	elif [[ -d "line" ]]
+	then
+		lines_sum=( $lines_sum+ `"$0" "$line"` )
+	fi
+done
+
+echo $lines_sum
