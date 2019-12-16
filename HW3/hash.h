@@ -15,6 +15,11 @@ typedef CompResult (*CompareFunc) (pKey key1, pKey key2);
 typedef pKey (*GetKeyFunc) (pElement element);
 typedef void (*DestroyFunc)(pElement element);
 
-// Add your declarations here...
-
+pHash HashCreate (int arrSize, HashFunc hashFunc, PrintFunc printFunc, CompareFunc compareFunc, GetKeyFunc getKeyFunc,
+        DestroyFunc destroyFunc);
+Result HashAdd (pHash HashTable, pElement Elem);
+pElement HashFind (pHash HashTable, pKey key);
+Result HashRemove (pHash HashTable, pKey Key);
+Result HashPrint (pHash HashTable);
+Result HashDestroy (pHash HashTable);
 #endif
