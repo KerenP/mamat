@@ -132,8 +132,10 @@ Result addFlightToAirport(int f_num, FlightType f_type, char dest[4], BOOL emerg
     if (runway_found){
         pFlight f=createFlight(f_num, f_type, dest, emergency);
         if (addFlight(emptiest_runway->cur_runway, f)){
+            free(f);
             return SUCCESS;
         }
+        free(f);
     }
     return FAILURE;
 }
@@ -248,11 +250,14 @@ Result delay(char dest[4]){
                 pFlight delayed_flight=createFlight(getFlightID(f), getFlightType(f), getDestination(f), isEmergency(f));
                 Result flight_removed= removeFlight(curr_runway->cur_runway,getFlightID(f));
                 if (!delayed_flight || !flight_removed){
+                    free(delayed_flight);
                     return  FAILURE;
                 }
                 if (!addFlight(curr_runway->cur_runway,delayed_flight)){
+                    free(delayed_flight);
                     return  FAILURE;
                 }
+                free(delayed_flight);
             }
             curr_flight=next_flight;
         }

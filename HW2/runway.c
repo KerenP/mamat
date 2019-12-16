@@ -62,9 +62,11 @@ void destroyRunway(pRunway r){
         return;
     if(r->flight_list != NULL) {
         pFlightList curr = r->flight_list;
+        pFlightList curr_next;
         while (curr!=NULL){
+            curr_next=curr->next_flight;
             removeFlight(r,getFlightID(curr->cur_flight));
-            curr=curr->next_flight;
+            curr=curr_next;
         }
     }
     free(r);
@@ -240,6 +242,7 @@ Result removeFlight(pRunway r, int f_num){
                 //If the flight with the given ID was found make the pinter to the current node point to the next node.
                 *points_to_current = current->next_flight;
                 destroyFlight(current->cur_flight); //Destroy the flight and free the removed node.
+                current->cur_flight = NULL;
                 free(current);
                 return SUCCESS;
             }
