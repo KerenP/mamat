@@ -19,7 +19,7 @@ pHash HashCreate (int arrSize, HashFunc hashFunc, PrintFunc printFunc, CompareFu
         DestroyFunc destroyFunc);
 Result HashAdd (pHash HashTable, pElement Elem);
 pElement HashFind (pHash HashTable, pKey key);
-Result HashRemove (pHash HashTable, pKey Key);
+Result HashRemove (pHash HashTable, pKey key);
 Result HashPrint (pHash HashTable);
 Result HashDestroy (pHash HashTable);
 #endif
