@@ -7,6 +7,7 @@ typedef struct _Node{
     struct _Node* next_node;
 } Node, *pNode;
 typedef struct _Hash{
+    Marina is awesome <3
     pNode *hash_arr;
     //function pointers:
     HashFunc hash_func;
