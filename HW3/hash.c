@@ -34,7 +34,7 @@ pHash HashCreate (int arrSize, HashFunc hashFunc, PrintFunc printFunc, CompareFu
     if(arrSize<0 || !hashFunc || !printFunc || !compareFunc || !getKeyFunc){
         return  NULL;
     }
-    pHash new_Hash = (pHash)malloc(sizeof(Hash));//TODO: FREE new_hash
+    pHash new_Hash = (pHash)malloc(sizeof(Hash));
     if(!new_Hash){
         printf("Error Allocating Memory");
         return NULL;
@@ -44,7 +44,7 @@ pHash HashCreate (int arrSize, HashFunc hashFunc, PrintFunc printFunc, CompareFu
     new_Hash->compare_func = compareFunc;
     new_Hash->get_key_func = getKeyFunc;
     new_Hash->destroy_func = destroyFunc;
-    new_Hash->hash_arr = (pNode *)malloc(sizeof(pNode)*arrSize);//TODO: FREE hash_arr
+    new_Hash->hash_arr = (pNode *)malloc(sizeof(pNode)*arrSize);
    new_Hash->arr_size = arrSize;
     if(!new_Hash->hash_arr){
         printf("Error Allocating Memory");
@@ -55,12 +55,15 @@ pHash HashCreate (int arrSize, HashFunc hashFunc, PrintFunc printFunc, CompareFu
     }
     return new_Hash;
 }
-Result HashAdd (pHash HashTable, pElement Elem){ //TODO:if the element already exists return FAIL
+Result HashAdd (pHash HashTable, pElement Elem){
     if(!HashTable || !Elem){
         return FAIL;
     }
+    if(HashFind(HashTable,HashTable->get_key_func(Elem))){
+        return FAIL;
+    }
     int array_index=HashTable->hash_func((HashTable->get_key_func(Elem)), HashTable->arr_size);
-    pNode new_node=(pNode)malloc(sizeof(Node)); //TODO: FREE NODES
+    pNode new_node=(pNode)malloc(sizeof(Node));
     new_node->next_node=HashTable->hash_arr[array_index];
     new_node->curr_element=Elem;
     HashTable->hash_arr[array_index]=new_node;
@@ -94,7 +97,33 @@ Result HashPrint (pHash HashTable){
     if(!HashTable){
         return FAIL;
     }
+    pNode curr_list;
     for (int i=0; i<HashTable->arr_size; i++){
-
+        curr_list=HashTable->hash_arr[i];
+        while(curr_list){
+            HashTable->print_func(curr_list->curr_element);
+            curr_list=curr_list->next_node;
+        }
     }
+    return SUCCESS;
+}
+Result HashDestroy (pHash HashTable){
+    if(!HashTable){
+        return FAIL;
+    }
+    pNode curr_list;
+    pNode next_list_node;
+    for (int i=0; i<HashTable->arr_size; i++){
+        curr_list=HashTable->hash_arr[i];
+        while(curr_list){
+            next_list_node=curr_list->next_node;
+            if(!HashRemove(HashTable,HashTable->get_key_func(curr_list->curr_element))){
+                return FAIL;
+            }
+            curr_list=next_list_node;
+        }
+    }
+    free(HashTable->hash_arr);
+    free(HashTable);
+    return SUCCESS;
 }
