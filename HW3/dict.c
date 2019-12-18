@@ -11,54 +11,59 @@ typedef struct _DictElement{
     char* translation;
 } DictElement;
 
-int HashWord(char* word, int hashTableSize){
+int HashWord(pKey word, int hashTableSize){
     if (!word || hashTableSize<0){
         return -1;
     }
-    int word_index = ((int) (word[0]-'a')*26+strlen(word))%hashTableSize;
-    return word_index;
+    char *charWord=(char*)word;
+    int wordIndex = ((int) (charWord[0]-'a')*26+(int)strlen(word))%hashTableSize;
+    return wordIndex;
 }
-Result PrintEntry (pDictElement dictElement){
+Result PrintEntry (pElement dictElement){
     if (!dictElement){
         return  FAIL;
     }
-    printf("%s : %s\n", dictElement->word, dictElement->translation);
+    printf("%s : %s\n", ((pDictElement)dictElement)->word, ((pDictElement)dictElement)->translation);
     return SUCCESS;
 }
-CompResult CompareWords (char* word1, char* word2){
+CompResult CompareWords ( pKey word1,  pKey word2){
     if (!word1 || !word2){
         return DIFFERENT;
     }
-    if (!strcmp(word1, word2)){
+    if (!strcmp((char*)word1, (char*)word2)){
         return SAME;
     }
     return DIFFERENT;
 }
-char* GetEntryKey (pDictElement dictElement){
+pKey GetEntryKey (pElement dictElement){
     if (!dictElement){
         return NULL;
     }
-    return  dictElement->word;
+    return  ((pDictElement)dictElement)->word;
 }
-void  DestroyEntry (pDictElement dictElement){
+void  DestroyEntry (pElement dictElement){
     if (!dictElement){
         return;
     }
+    free(((pDictElement)dictElement)->word);
+    free(((pDictElement)dictElement)->translation);
     free(dictElement);
 }
 pHash CreateDictionary(){
-    return HashCreate (HASH_SIZE, HashWord, PrintEntry, CompareWords, GetEntryKey, DestroyEntry);//TODO: add & or declare pointers to all functions
+    return HashCreate (HASH_SIZE, HashWord, PrintEntry, CompareWords, GetEntryKey, DestroyEntry);
 }
 Result AddTranslation(pHash dict, char* word, char* translation){
     if (!dict || !word || !translation){
         return FAIL;
     }
-    pDictElement newElement = (pDictElement)malloc(sizeof(DictElement));//TODO: free new_element
+    pDictElement newElement = (pDictElement)malloc(sizeof(DictElement));
     if (!newElement){
         return FAIL;
     }
-    newElement->word = word;
-    newElement->translation = translation;
+    newElement->word = (char*)malloc(sizeof(char)*WORD_LENGTH);
+    strcpy(newElement->word,word);
+    newElement->translation =  (char*)malloc(sizeof(char)*WORD_LENGTH);
+    strcpy(newElement->translation,translation);
     return HashAdd(dict, newElement);
 }
 Result Translate (pHash dict, char* word){

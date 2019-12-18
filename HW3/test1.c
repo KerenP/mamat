@@ -4,7 +4,8 @@
 #include "hash.h"
 #include "dict.h"
 
-pHash ReadDictionary () {	
+
+pHash ReadDictionary () {	//TODO: Check input + check add translation
 	/* This function reads a dictionary line by line from the standard input. */
 	pHash dictionary;
 	char entryLine [100] = "";
@@ -22,6 +23,12 @@ pHash ReadDictionary () {
 }
 
 int main () {
-	// Add your code here...
+    pHash dict=ReadDictionary();
+    PrintDictionary(dict);
+    char word [WORD_LENGTH];
+    strcpy(word,"cat");
+    DeleteTranslation(dict,word);//TODO: check if ok to send array or change to char*
+    PrintDictionary(dict);
+    HashDestroy(dict);
 	return 0;
 }
