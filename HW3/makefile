@@ -1,6 +1,6 @@
 # This is a makefile for the person database system
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -std=c99
 CCLINK = $(CC)
 LIBS = 
 OBJS = test1.o dict.o hash.o
