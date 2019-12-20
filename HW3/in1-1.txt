@@ -11,4 +11,3 @@ dictionary=milon
 person=adam
 grade=tziyun
 astronaut=astronaut
-marina

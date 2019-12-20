@@ -87,9 +87,9 @@ Result HashRemove (pHash HashTable, pKey key){
     if (!found_node){
         return  FAIL;
     }
-    //pNode *points_to_current = &(found_node);//pointer to the current pointer
-    pNode *points_to_current;
-    *points_to_current = found_node->next_node;
+    pNode current=found_node;
+    pNode *points_to_current = &(current);//pointer to the current pointer
+    *points_to_current = current->next_node;
     HashTable->destroy_func(found_node->curr_element);
     free(found_node);
     return SUCCESS;
