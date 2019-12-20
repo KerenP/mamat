@@ -100,6 +100,7 @@ Result HashRemove (pHash HashTable, pKey key){
             *points_to_current = current->next_node;
             HashTable->destroy_func(current->curr_element);
             free(current);
+            current=NULL;
             return SUCCESS;
         }
         points_to_current=&(current->next_node);
@@ -138,6 +139,9 @@ Result HashDestroy (pHash HashTable){
         }
     }
     free(HashTable->hash_arr);
+    HashTable->hash_arr=NULL;
     free(HashTable);
+    HashTable=NULL;
+
     return SUCCESS;
 }
