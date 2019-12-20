@@ -83,7 +83,7 @@ Result HashRemove (pHash HashTable, pKey key){
     if(!HashTable || !key ){
         return FAIL;
     }
-    pNode found_node = HashFindNode(HashTable, key);
+    /*pNode found_node = HashFindNode(HashTable, key);
     if (!found_node){
         return  FAIL;
     }
@@ -92,7 +92,20 @@ Result HashRemove (pHash HashTable, pKey key){
     *points_to_current = current->next_node;
     HashTable->destroy_func(found_node->curr_element);
     free(found_node);
-    return SUCCESS;
+    return SUCCESS;*/
+    pNode current = HashTable->hash_arr[HashTable->hash_func(key,HashTable->arr_size)];
+    pNode *points_to_current = &(HashTable->hash_arr[HashTable->hash_func(key,HashTable->arr_size)]);//pointer to the current pointer (the address of curr)
+    while (current != NULL) {
+        if (HashTable->compare_func(HashTable->get_key_func(current->curr_element),key)==SAME) {
+            *points_to_current = current->next_node;
+            HashTable->destroy_func(current->curr_element);
+            free(current);
+            return SUCCESS;
+        }
+        points_to_current=&(current->next_node);
+        current = current->next_node;
+    }
+    return FAIL;
 }
 Result HashPrint (pHash HashTable){
     if(!HashTable){

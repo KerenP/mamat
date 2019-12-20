@@ -31,9 +31,7 @@ pHash ReadDictionary () {	//TODO: Check input + check add translation
 int main () {
     pHash dict=ReadDictionary();
     PrintDictionary(dict);
-    char word [WORD_LENGTH];
-    strcpy(word,"cat");
-    DeleteTranslation(dict,word);//TODO: check if ok to send array or change to char*
+    DeleteTranslation(dict,"cat");
     PrintDictionary(dict);
     HashDestroy(dict);
 	return 0;
