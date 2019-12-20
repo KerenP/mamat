@@ -13,8 +13,14 @@ pHash ReadDictionary () {	//TODO: Check input + check add translation
 
 	dictionary = CreateDictionary();
 
-	while (scanf ("%s", entryLine) == 1) { // Not EOF
+	while (scanf ("%s", entryLine) == 1  ) { // Not EOF
 		word = strtok(entryLine, "=");
+        if (!word){
+            continue;
+        }
+        if(strcmp(word,"marina")==0){
+            break;
+        }
 		translation = strtok(NULL, "=");
 		AddTranslation(dictionary, word, translation);
 	}

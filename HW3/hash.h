@@ -6,6 +6,7 @@ typedef enum {SAME = 0, DIFFERENT} CompResult;
 
 typedef struct _Hash *pHash;
 
+
 typedef void* pElement;
 typedef void* pKey;
 

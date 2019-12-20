@@ -1,11 +1,11 @@
 #include "hash.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+typedef struct _Node *pNode;
 typedef struct _Node{
     pElement curr_element;
-    struct _Node* next_node;
-} Node, *pNode;
+    pNode next_node;
+} Node;
 typedef struct _Hash{
     pNode *hash_arr;
     int arr_size;
@@ -87,7 +87,8 @@ Result HashRemove (pHash HashTable, pKey key){
     if (!found_node){
         return  FAIL;
     }
-    pNode *points_to_current = &(found_node);//pointer to the current pointer
+    //pNode *points_to_current = &(found_node);//pointer to the current pointer
+    pNode *points_to_current;
     *points_to_current = found_node->next_node;
     HashTable->destroy_func(found_node->curr_element);
     free(found_node);
