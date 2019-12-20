@@ -46,17 +46,17 @@ void  DestroyEntry (pElement dictElement){
         return;
     }
     free(((pDictElement)dictElement)->word);
-    ((pDictElement)dictElement)->word=NULL;
     free(((pDictElement)dictElement)->translation);
-    ((pDictElement)dictElement)->translation=NULL;
     free(dictElement);
-    dictElement=NULL;
 }
 pHash CreateDictionary(){
     return HashCreate (HASH_SIZE, HashWord, PrintEntry, CompareWords, GetEntryKey, DestroyEntry);
 }
 Result AddTranslation(pHash dict, char* word, char* translation){
     if (!dict || !word || !translation){
+        return FAIL;
+    }
+    if(HashFind(dict,word)){
         return FAIL;
     }
     pDictElement newElement = (pDictElement)malloc(sizeof(DictElement));
