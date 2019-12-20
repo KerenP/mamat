@@ -31,8 +31,19 @@ pHash ReadDictionary () {	//TODO: Check input + check add translation
 int main () {
     pHash dict=ReadDictionary();
     PrintDictionary(dict);
+    DeleteTranslation(dict,"dog");
     DeleteTranslation(dict,"cat");
+    DeleteTranslation(dict,"astronaut");
     PrintDictionary(dict);
+    AddTranslation(dict,"goat","ez");
+    AddTranslation(dict,"cow","para");
+    AddTranslation(dict,"school","beitsefer");
+    AddTranslation(dict,"boy","yeled");
+    PrintDictionary(dict);
+    Translate(dict,"flag");
+    Translate(dict,"goat");
+    Translate(dict,"school");
+    Translate(dict,"apple");
     HashDestroy(dict);
 	return 0;
 }
