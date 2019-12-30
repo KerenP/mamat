@@ -1,0 +1,8 @@
+no movie created!
+Ticket price in NIS is 35
+The movies are:
+Name: Hobbit
+Length in minutes: 90
+Theater #3 (dubbed)
+Next screening is at 18:00 o'clock.
+Next Hebrew screening is at 15:00 o'clock.
