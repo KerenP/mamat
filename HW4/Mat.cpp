@@ -16,7 +16,9 @@ Mat::Mat (const int rows, const int cols)   {
 int Mat::getRowsNum() const {return rows;}
 int Mat::getColumnsNum() const { return cols;}
 int Mat::getElement(int row, int col) const {return mat[row-1][col-1];}
-void Mat::setElement(int row, int col, int elem) {mat[row-1][col-1]=elem;}
+void Mat::setElement(int row, int col, int elem) {
+    mat[row-1][col-1]=elem;
+}
 Mat::~Mat() {
     for(int i=0;i<rows;i++){
         delete[] mat[i];
