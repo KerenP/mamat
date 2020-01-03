@@ -15,6 +15,7 @@ public:
     //Getter
     int getTheaterNum() const;
     //Setter
-    void reset();
+    void Reset();
+    ~Theater();
 };
 #endif //HW4_THEATER_H

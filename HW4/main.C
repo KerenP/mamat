@@ -11,10 +11,12 @@
 #include "DubbedMovie.H"
 #include "Employee.H"
 #include "Cashier.H"
-#include <string.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <string>
+#include <string.h>
 
 
 
@@ -48,7 +50,7 @@ int main() {
 
 	///// parser //////////////////////
   char szLine[MAX_LINE_SIZE];
-  const char* delimiters = " \t\n";
+  const char* delimiters = " \t\n\r";
   char* command;
   char* x_str, *y_str, *z_str, *w_str;
   INIT_PARAMS
@@ -79,8 +81,8 @@ int main() {
   char *workHours[7] ,*workHours2[7];
 	for (int ii=0;ii<7;ii++)
 	{
-		workHours[ii] = new char[5];
-		workHours2[ii] = new char[5];
+		workHours[ii] = new char[6];
+		workHours2[ii] = new char[6];
 	}
 
   fgets(szLine,MAX_LINE_SIZE,stdin);
@@ -294,7 +296,7 @@ int main() {
 			z_str = strtok(NULL, delimiters);
 			if (z_str)
 			{
-				strncpy(workHours[ii],z_str,5);
+				strcpy(workHours[ii],z_str);
 			}
 			else {
 				wrongParams = true;
@@ -325,7 +327,7 @@ int main() {
 			z_str = strtok(NULL, delimiters);
 			if (z_str)
 			{
-				strncpy(workHours2[ii],z_str,5);
+				strcpy(workHours2[ii],z_str);
 			}
 			else {
 				wrongParams = true;
@@ -417,10 +419,10 @@ int main() {
 	} 
 	for (i=0;i<7;i++)
 	{
-		delete workHours[i];
-		delete workHours2[i];
+		delete[] workHours[i];
+		delete[] workHours2[i];
 	}
-	delete movieName1; delete movieName2; delete language1; delete language2; delete empName1; delete empName2;
+	delete[] movieName1; delete[] movieName2; delete[] language1; delete[] language2; delete[] empName1; delete[] empName2;
 	delete movie1; delete movie2; delete employee1; delete cashier1; 
 	delete mat1;
 	return 0;

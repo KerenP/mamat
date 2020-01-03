@@ -5,7 +5,7 @@
 #include "Theater.h"
 Theater :: Theater(int num, int row, int col) : Mat(row,col), theater_num(num){}
 int Theater :: getTheaterNum() const {return theater_num;}
-void Theater :: reset(){
+void Theater :: Reset(){
     int i=0;
     int j=0;
     for(; i<rows;i++){
@@ -15,4 +15,5 @@ void Theater :: reset(){
     }
 
 }
+Theater :: ~Theater(){}
 

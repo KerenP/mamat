@@ -15,18 +15,20 @@ protected:
     static const int price;
     int theater_num;
     Mat weekly_screens;
+    BOOL inner_addScreening(int day,int hour,Mat& screens);
+    int inner_getNextScreening(int day, int hour,const Mat& screens) const;
 public:
     //constructor
-    Movie(char* name, int duration, char* language, int theaterNum );
+    Movie(char* name, int duration, char* Language, int theaterNum ); //TODO: see if needed to add const to all strings and string array in employee
     //Getters
     char* getName() const;
     int getLength() const;
     char* getLanguage() const;
     int getTheaterNum() const;
     static int getTicketPrice() ;
+    int getNextScreening(int day, int hour) const;
     //Setter
     BOOL addScreening(int day,int hour);
-    int getNextScreening(int day, int hour);
     ~Movie();
 };
 
