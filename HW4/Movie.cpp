@@ -5,8 +5,12 @@ const int Movie :: price=35;
 int Movie ::getTicketPrice() { return  price;}
 Movie :: Movie(char *name, int duration, char *language, int theaterNum) : weekly_screens(DAYS_OF_WEEK , MAX_SCREENINGS_PER_DAY),
 duration(duration), theater_num(theaterNum){
-    movie_name=new char[sizeof(name)];
-    this->language=new char[sizeof(language)];
+    //movie_name=new char[strlen(name)+1];
+    //this->language=new char[strlen(language)+1];
+    //strcpy(movie_name,name);
+    //strcpy(this->language,language);
+    movie_name=name;
+    this->language=language;
 }
 char* Movie :: getName() const {return movie_name;}
 int Movie :: getLength() const {return duration;}
@@ -39,8 +43,8 @@ int Movie ::getNextScreening(int day, int hour) {
     return 0;
 }
 Movie :: ~Movie(){
-    delete [] movie_name;
-    delete [] language;
+    //delete [] movie_name;
+    //delete [] language;
     //TODO: call mat destructor??
 }
 
