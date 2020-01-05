@@ -1,0 +1,12 @@
+createTheater 3 5 1
+createTheater 3 5 2
+createTheater 3 5 3
+createTheater 3 5 4
+createTheater 3 5 5
+createDubbedMovie Hobbit 90 English 2 3
+addScreening2 1 12
+addScreening2 7 18
+addScreening1 7 20
+getTicketPrice
+addHebrewScreening 7 15
+printMovies 7 14

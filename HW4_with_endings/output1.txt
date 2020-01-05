@@ -1,0 +1,25 @@
+mat[3,5]= 10
+Ticket price in NIS is 35
+The movies are:
+Name: Bet_Lechem
+Length in minutes: 87
+Language: Hebrew
+Theater #1
+Next screening is at 18:00 o'clock.
+Name: Avatar
+Length in minutes: 155
+Theater #3 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 18:00 o'clock.
+The Employees are:
+Employee:
+Name: Dan
+Salary in NIS: 25
+Weekly Salary in NIS: 950
+Cashier:
+Name: Gal
+Salary in NIS: 20
+Weekly Salary in NIS: 760
+Ticket Profit (NIS): 0
+Ticket Profit (NIS):105
+Transaction Failed!
