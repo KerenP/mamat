@@ -13,7 +13,7 @@ char* Movie :: getLanguage() const {return language;}
 BOOL Movie ::inner_addScreening(int day, int hour, Mat& screening) {
     int i=1;
     int endTime;
-    while(screening.getElement(day,i)!=0 && i<=MAX_SCREENINGS_PER_DAY){
+    while(i<=MAX_SCREENINGS_PER_DAY && screening.getElement(day,i)!=0){
         i++;
     }
     if(i==MAX_SCREENINGS_PER_DAY+1 ){
