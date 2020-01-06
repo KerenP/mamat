@@ -8,7 +8,7 @@ int Cashier ::getTicketProfit() const {return profit;}
 //}
 int Cashier ::sellTickets(Movie *requestedMovie, Theater *requestedTheater, BOOL isDubbed, int NumTickets,
                           int requestedRow, int RightSeatCol) {
-   if(requestedTheater->getRowsNum()<requestedRow-1)
+   if(requestedTheater->getRowsNum()<requestedRow)//Maby causes seg fault
        return 0;
     BOOL foundTheater=FALSE;
     BOOL availableSeats=FALSE;
