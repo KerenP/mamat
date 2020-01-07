@@ -13,7 +13,7 @@ Theater class inheriting from Mat class
 
 Description:
 In addition to all protected members of Mat theater has protected member - theater_num - the id of theater.
-methods:
+in addition to methods of Mat Theater has methods:
 ***********************************/
 
 /******************************

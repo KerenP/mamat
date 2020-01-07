@@ -13,7 +13,7 @@ Cashier class inheriting from Employee class
 
 Description:
 In addition to all protected members of Employee theater has protected member - profit - profit made by the cashier.
-methods:
+In addition to methods of Employee Cashier has methods:
 ***********************************/
 /******************************
 Method name:
@@ -26,7 +26,7 @@ initialise member profit with 0.
 
 Parameters:
 name- A string containing the name of the cashier
-salary- the salary per hour of rhe cashier
+salary- the salary per hour of the cashier
 workHours- an array with 7 strings containing the working hours of the cashier for each day of the week
 
 return value:None

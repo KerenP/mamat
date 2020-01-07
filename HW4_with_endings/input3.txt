@@ -76,5 +76,4 @@ resetTheater 2
 
 sellTickets 2 1 1 1 1 2
 sellTickets 2 1 1 1 1 1
-
 printEmployees

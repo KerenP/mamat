@@ -106,3 +106,13 @@ Ticket Profit (NIS):245
 Transaction Failed!
 Ticket Profit (NIS):280
 Ticket Profit (NIS):315
+The Employees are:
+Employee:
+Name: Omer
+Salary in NIS: 1
+Weekly Salary in NIS: 40
+Cashier:
+Name: Amit
+Salary in NIS: 40
+Weekly Salary in NIS: 1560
+Ticket Profit (NIS): 315
