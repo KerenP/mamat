@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+#****************************************************************
+#* function name: break_word
+#* description  : split sting to its characters and print each
+#  char in seprate line
+#* parameter    : string
+#* return value : print each char of given string in new line
+#****************************************************************
+word="$1"
+for i in $(seq 0 ${#word}) #i run from 0 to word lenth
+do
+	echo "${word:i:1}" #take substring starts at i with lenth 1
+done

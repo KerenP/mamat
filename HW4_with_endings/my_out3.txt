@@ -1,0 +1,118 @@
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 13:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 19:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 19:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 0:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 17:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 0:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 17:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 17:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 0:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 16:00 o'clock.
+Next Hebrew screening is at 0:00 o'clock.
+The movies are:
+Name: Aladin
+Length in minutes: 119
+Language: English
+Theater #1
+Next screening is at 13:00 o'clock.
+Name: TheLionKing
+Length in minutes: 94
+Theater #2 (dubbed)
+Next screening is at 17:00 o'clock.
+Next Hebrew screening is at 14:00 o'clock.
+The Employees are:
+Employee:
+Name: Omer
+Salary in NIS: 1
+Weekly Salary in NIS: 40
+Cashier:
+Name: Amit
+Salary in NIS: 40
+Weekly Salary in NIS: 1560
+Ticket Profit (NIS): 0
+Ticket Profit (NIS):105
+Transaction Failed!
+Ticket Profit (NIS):175
+Transaction Failed!
+Transaction Failed!
+Ticket Profit (NIS):210
+Ticket Profit (NIS):245
+Transaction Failed!
+Ticket Profit (NIS):280
+Ticket Profit (NIS):315
+The Employees are:
+Employee:
+Name: Omer
+Salary in NIS: 1
+Weekly Salary in NIS: 40
+Cashier:
+Name: Amit
+Salary in NIS: 40
+Weekly Salary in NIS: 1560
+Ticket Profit (NIS): 315
