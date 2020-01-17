@@ -11,10 +11,7 @@ public:
 	
 	//d'tor
 	~FastDeliveryVehicle();
-	
-	//adds parcel to vehicle returns false if add failed
-	bool addParcel(Parcel* parcel);
-	
+
 	//performs all possible deliveries for one day
 	//output example
 	//Starting deliveries for vehicle soosita
@@ -24,6 +21,6 @@ public:
 	//
 	//if no parcels present:
 	//No parcels to deliver for vehicle riksha
-	int performDeliveryDay(int* numberOfDeliveries);
+	virtual int performDeliveryDay(int* numberOfDeliveries);
 };
 #endif /* FASTDELIVERYVEHICLE_H_ */
