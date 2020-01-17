@@ -38,7 +38,7 @@ public:
     Quality getVehicleQuality() const;
     int getStation() const;
     VehicleType getVehicleType() const;
-    virtual bool performSingleDelivery(int &profit, int &distance);
+    bool performSingleDelivery(int &profit, int &distance);
 
 protected:
    char* license_plate;

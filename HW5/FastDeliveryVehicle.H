@@ -1,7 +1,9 @@
 #ifndef FASTDELIVERYVEHICLE_H_
 #define FASTDELIVERYVEHICLE_H_
 
-class FastDeliveryVehicle{
+#include "DeliveryVehicle.H"
+
+class FastDeliveryVehicle : public  DeliveryVehicle{
 public:
 	
 	//c'tor

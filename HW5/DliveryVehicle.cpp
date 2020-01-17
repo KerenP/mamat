@@ -16,36 +16,39 @@ bool DeliveryVehicle::addParcel(Parcel *parcel) {
  bool DeliveryVehicle::performSingleDelivery(int &profit, int &distance){
     if(parcels_to_deliver.empty()) //TODO: check if better to place in PreformDeliveryDay
         return false;
-    int single_distance=0;
     Parcel* parcelToDeliver=parcels_to_deliver.front();
     if(parcelToDeliver->getParcelDest()>=station){
-        single_distance=parcelToDeliver->getParcelDest()-station;
+        distance=parcelToDeliver->getParcelDest()-station;
     }
     else
     {
-        single_distance=10-station+parcelToDeliver->getParcelDest();
+        distance=10-station+parcelToDeliver->getParcelDest();
     }
     parcelToDeliver->printParcelInfo();
-    cout << "Fuel consumed: " << single_distance << " Revenue is: " << PARCEL_PRICE << endl ;
-     distance=distance+single_distance;
     station=parcelToDeliver->getParcelDest();
-    profit=profit+PARCEL_PRICE;
-     parcels_to_deliver.erase(parcels_to_deliver.begin());
+    profit=PARCEL_PRICE;
+    parcels_to_deliver.erase(parcels_to_deliver.begin());
     delete parcelToDeliver;
     return true;
 }
 int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     int profit=0;
     int distance=0;
+    int total_profit=0;
+    int total_distance=0;
     if(parcels_to_deliver.empty())
         cout<< "No parcels to deliver for vehicle " << license_plate << endl;
     else
         cout << "Starting deliveries for vehicle " << license_plate << endl;
-    while(distance<MAX_STATIONS_PER_DAY && performSingleDelivery(profit,distance)){
+    while(!parcels_to_deliver.empty() && (distance < MAX_STATIONS_PER_DAY)){
+        performSingleDelivery(profit,distance);
+        cout << "Fuel consumed: " << distance << " Revenue is: " << PARCEL_PRICE << endl;
         numberOfDeliveries++;
+        total_distance+=distance;
+        total_profit+=profit;
     }
-    int final_revenue=profit-distance-vehicle_quality;
-    cout << "Total travel distance is " << distance << endl;
+    int final_revenue=total_profit-total_distance-vehicle_quality;
+    cout << "Total travel distance is " << total_distance << endl;
     cout << "Total revenue is " << final_revenue << endl;
 }
 char* DeliveryVehicle :: getLicensePlate() const {return license_plate;}
