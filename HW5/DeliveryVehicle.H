@@ -40,13 +40,16 @@ public:
     VehicleType getVehicleType() const;
     bool performSingleDelivery(int &profit, int &distance);
 
+
 protected:
    char* license_plate;
    Quality vehicle_quality;
    int station;
+   int distance_traveled_today;
    VehicleType vehicle_type;
    vector <Parcel*> parcels_to_deliver; //TODO:check if doesnt cause memory leak
    bool checkParcelExist(Parcel* parcel);
+   //int DailyDistanceProfitAndDeliveries(int* numberOfDeliveries , int* totalDistance, int numDeliveries);
 };
 
 #endif /* DELIVERYVEHICLE_H_ */

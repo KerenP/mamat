@@ -1,6 +1,6 @@
 #include "DeliveryVehicle.H"
 DeliveryVehicle::DeliveryVehicle(const char *ID, Quality quality) : vehicle_quality(quality), station(0),
-parcels_to_deliver(), vehicle_type(regular) {
+parcels_to_deliver(), vehicle_type(regular), distance_traveled_today(0){
     license_plate=new char[strlen(ID)+1];
     strcpy(license_plate,ID);}
 bool DeliveryVehicle::checkParcelExist(Parcel* parcel){ //TODO:check if doesnt cause seg fault
@@ -31,6 +31,7 @@ bool DeliveryVehicle::addParcel(Parcel *parcel) {
     delete parcelToDeliver;
     return true;
 }
+
 int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     int profit=0;
     int distance=0;
@@ -48,8 +49,10 @@ int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
         total_profit+=profit;
     }
     int final_revenue=total_profit-total_distance-vehicle_quality;
+    distance_traveled_today=total_distance;
     cout << "Total travel distance is " << total_distance << endl;
     cout << "Total revenue is " << final_revenue << endl;
+    return final_revenue;
 }
 char* DeliveryVehicle :: getLicensePlate() const {return license_plate;}
 Quality DeliveryVehicle :: getVehicleQuality() const {return vehicle_quality;}
