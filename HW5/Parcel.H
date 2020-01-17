@@ -2,6 +2,7 @@
 #define PARCEL_H_
 
 #include <string.h>
+#include <iostream>
 #define PARCEL_PRICE 4
 using namespace std;
 class Parcel{
@@ -17,6 +18,7 @@ public:
 
 	char* getParcelID() const ;
 	int getParcelDest();
+	void printParcelInfo();
 };
 
 #endif /* PARCEL_H_ */
