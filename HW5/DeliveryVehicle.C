@@ -61,7 +61,7 @@ Quality DeliveryVehicle :: getVehicleQuality() const {return vehicle_quality;}
 int DeliveryVehicle :: getStation() const{return station;}
 VehicleType DeliveryVehicle :: getVehicleType() const {return vehicle_type;}
 DeliveryVehicle ::~DeliveryVehicle() {
-    delete license_plate;
+    delete[] license_plate;
     while(!parcels_to_deliver.empty()){
         Parcel *curr_parcel = parcels_to_deliver.front();
         parcels_to_deliver.erase(parcels_to_deliver.begin());

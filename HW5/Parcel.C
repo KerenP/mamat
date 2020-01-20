@@ -8,4 +8,6 @@ Parcel::Parcel (const char* ID, int dest) : parcelDest(dest){
 char* Parcel::getParcelID() const { return parcelID;}
 int Parcel::getParcelDest() { return parcelDest;}
 void Parcel::printParcelInfo() {cout<<"Delivering parcel " << parcelID << " to position " << parcelDest <<endl;}
-Parcel::~Parcel() {}
+Parcel::~Parcel() {
+delete[] parcelID;
+}
