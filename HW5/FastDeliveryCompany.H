@@ -6,7 +6,7 @@
 class FastDeliveryCompany : public DeliveryCompany{
 public:
 	//c'tor
-	FastDeliveryCompany(int money);
+	FastDeliveryCompany(int money =INITIAL_MONEY);
 	
 	//d'tor
 	virtual ~FastDeliveryCompany();

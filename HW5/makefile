@@ -5,10 +5,10 @@
 #
 # Definitions
 #
-CCC = g++ 
-CXXFLAGS = -Wall -g 
+CCC = g++
+CXXFLAGS = -Wall -g -std=c++11
 CXXLINK = $(CCC)
-LIBS = 
+LIBS =
 OBJS = DeliveryVehicle.o FastDeliveryVehicle.o ProfessionalDeliveryVehicle.o \
 DeliveryVehicleList.o DeliveryCompany.o FastDeliveryCompany.o ProfessionalDeliveryCompany.o Parcel.o
 RM = rm -f
@@ -35,9 +35,9 @@ ProfessionalDeliveryCompany.H FastDeliveryVehicle.H ProfessionalDeliveryVehicle.
 main3.o: main3.C FastDeliveryCompany.H DeliveryCompany.H DeliveryVehicle.H Parcel.H DeliveryVehicleList.H \
 ProfessionalDeliveryCompany.H FastDeliveryVehicle.H   ProfessionalDeliveryVehicle.H
 
-DeliveryCompany.o: DeliveryCompany.C DeliveryCompany.H DeliveryVehicle.H Parcel.H DeliveryVehicleList.H 
+DeliveryCompany.o: DeliveryCompany.C DeliveryCompany.H DeliveryVehicle.H Parcel.H DeliveryVehicleList.H
 
-DeliveryVehicle.o: DeliveryVehicle.C DeliveryVehicle.H Parcel.H 
+DeliveryVehicle.o: DeliveryVehicle.C DeliveryVehicle.H Parcel.H
 
 DeliveryVehicleList.o: DeliveryVehicleList.C DeliveryVehicleList.H DeliveryVehicle.H Parcel.H
 

@@ -6,7 +6,7 @@
 class ProfessionalDeliveryCompany : public DeliveryCompany{
 public:
 	//c'tor
-	ProfessionalDeliveryCompany(int money);
+	ProfessionalDeliveryCompany(int money =INITIAL_MONEY);
 	
 	//d'tor
 	virtual ~ProfessionalDeliveryCompany();

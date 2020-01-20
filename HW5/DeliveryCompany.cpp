@@ -4,12 +4,12 @@ received_last_parcel(0) {}
 bool DeliveryCompany ::  addVehicle(DeliveryVehicle* vehicle){
     auto it=find(delivery_vehicle_list.vehicle_list.begin(), delivery_vehicle_list.vehicle_list.end(),vehicle);
     if(it!=delivery_vehicle_list.vehicle_list.end()){
-        cout<<"Can't add vehicle, it already exists";
+        cout<<"Can't add vehicle, it already exists"<<endl;
         return false;
     }
     for(auto curr_vehicle : delivery_vehicle_list.vehicle_list){
        if(!strcmp(curr_vehicle->getLicensePlate(),vehicle->getLicensePlate())){
-           cout<<"Can't add vehicle, it already exists";
+           cout<<"Can't add vehicle, it already exists"<<endl;
            delete vehicle;
            return false;
        }
@@ -54,9 +54,9 @@ bool DeliveryCompany :: performDeliveryDay(){
     return true;
 }
 void DeliveryCompany :: displayFunds(){
-    cout << "Company balance is now " << income;
+    cout << "Company balance is now " << income<<endl;
 }
 void DeliveryCompany :: displayNumberOfDeliveries(){
-    cout << "Till now company has delivered " << number_of_deliveries << " parcels";
+    cout << "Till now company has delivered " << number_of_deliveries << " parcels" <<endl;
 }
 DeliveryCompany ::~DeliveryCompany() {}
