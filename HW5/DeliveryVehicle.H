@@ -38,7 +38,7 @@ public:
     Quality getVehicleQuality() const;
     int getStation() const;
     VehicleType getVehicleType() const;
-    bool performSingleDelivery(int &profit, int &distance);
+    bool performSingleDelivery(int &distance);
 
 
 protected:

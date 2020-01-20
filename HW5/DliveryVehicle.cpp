@@ -13,7 +13,7 @@ bool DeliveryVehicle::addParcel(Parcel *parcel) {
     parcels_to_deliver.push_back(parcel);
     return true;
 }
- bool DeliveryVehicle::performSingleDelivery(int &profit, int &distance){
+ bool DeliveryVehicle::performSingleDelivery(int &distance){
     if(parcels_to_deliver.empty()) //TODO: check if better to place in PreformDeliveryDay
         return false;
     Parcel* parcelToDeliver=parcels_to_deliver.front();
@@ -26,14 +26,12 @@ bool DeliveryVehicle::addParcel(Parcel *parcel) {
     }
     parcelToDeliver->printParcelInfo();
     station=parcelToDeliver->getParcelDest();
-    profit=PARCEL_PRICE;
     parcels_to_deliver.erase(parcels_to_deliver.begin());
     delete parcelToDeliver;
     return true;
 }
 
 int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
-    int profit=0;
     int distance=0;
     int total_profit=0;
     int total_distance=0;
@@ -41,13 +39,13 @@ int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
         cout<< "No parcels to deliver for vehicle " << license_plate << endl;
     else
         cout << "Starting deliveries for vehicle " << license_plate << endl;
-    while(!parcels_to_deliver.empty() && (distance < MAX_STATIONS_PER_DAY)){
-        performSingleDelivery(profit,distance);
+    while(!parcels_to_deliver.empty() && (total_distance < MAX_STATIONS_PER_DAY)){
+        performSingleDelivery(distance);
         cout << "Fuel consumed: " << distance << " Revenue is: " << PARCEL_PRICE << endl;
-        numberOfDeliveries++;
+        (*numberOfDeliveries)++;
         total_distance+=distance;
-        total_profit+=profit;
     }
+    total_profit=*numberOfDeliveries*PARCEL_PRICE;
     int final_revenue=total_profit-total_distance-vehicle_quality;
     distance_traveled_today=total_distance;
     cout << "Total travel distance is " << total_distance << endl;

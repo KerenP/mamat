@@ -1,6 +1,8 @@
 #include "FastDeliveryVehicle.H"
 
-FastDeliveryVehicle::FastDeliveryVehicle(const char *ID, Quality quality) : DeliveryVehicle(ID, quality) {}
+FastDeliveryVehicle::FastDeliveryVehicle(const char *ID, Quality quality) : DeliveryVehicle(ID, quality) {
+    vehicle_type=fast;
+}
 
 int FastDeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     int profit=0;
@@ -12,7 +14,7 @@ int FastDeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     else
         cout << "Starting deliveries for vehicle " << license_plate << endl;
     while(!parcels_to_deliver.empty() && (distance < MAX_STATIONS_PER_DAY)){
-        performSingleDelivery(profit,distance);
+        performSingleDelivery(distance);
         int revenue = distance*2;
         cout << "Fuel consumed: " << distance << " Revenue is: " << revenue << endl;
         numberOfDeliveries++;
