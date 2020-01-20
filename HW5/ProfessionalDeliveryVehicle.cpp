@@ -31,4 +31,5 @@ bool ProfessionalDeliveryVehicle :: addParcel(Parcel* parcel){
     }
 return profit;
 }
+ProfessionalDeliveryVehicle::~ProfessionalDeliveryVehicle() {}
 

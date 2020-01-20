@@ -1,5 +1,7 @@
-#include "parcel.H"
+#include "Parcel.H"
 #include "DeliveryVehicle.H"
+#include "FastDeliveryVehicle.H"
+#include "ProfessionalDeliveryVehicle.H"
 int main()
 {
     int numDeliveries=0;
