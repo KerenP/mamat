@@ -8,7 +8,6 @@ class DeliveryVehicleList {
 public:
     DeliveryVehicleList();
     ~DeliveryVehicleList();
-protected:
     vector <DeliveryVehicle*> vehicle_list;
 };
 

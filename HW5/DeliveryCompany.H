@@ -2,25 +2,31 @@
 #define DELIVERYCOMPANY_H_
 #include "DeliveryVehicle.H"
 #include "DeliveryVehicleList.H"
+#define INITIAL_MONEY 100
 
 class DeliveryCompany{
+protected:
+    DeliveryVehicleList delivery_vehicle_list;
+    int income;
+    int number_of_deliveries;
+    unsigned received_last_parcel;
 public:
 	//c'tor
-	DeliveryCompany(int money);
+	DeliveryCompany(int money=INITIAL_MONEY);
 	
 	//d'tor
-	~DeliveryCompany();
+	virtual ~DeliveryCompany();
 	
 	//adds vehicle to vehicle queue
 	//if vehicle exists - output is
 	//Can't add vehicle, it already exists
 	//
 	//returns false if not possible and deletes vehicle
-	bool addVehicle(DeliveryVehicle* vehicle);
+	virtual bool addVehicle(DeliveryVehicle* vehicle);
 	
 	//receives parcel if possible
 	//returns false if not possible and deletes parcel
-	bool receiveParcel(Parcel* parcel);
+	 bool receiveParcel(Parcel* parcel);
 	
 	//performs all deliveries possible for one day
 	//returns false if no vehicles are present
@@ -28,7 +34,7 @@ public:
 	//Starting days deliveries:
 	//<here comes output for each vehicle>
 	//Total revenue for company is -2
-	bool performDeliveryDay();
+	 bool performDeliveryDay();
 	
 	//displays company funds
 	//output example:

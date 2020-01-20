@@ -5,7 +5,7 @@ parcels_to_deliver(), vehicle_type(regular), distance_traveled_today(0){
     strcpy(license_plate,ID);}
 bool DeliveryVehicle::checkParcelExist(Parcel* parcel){ //TODO:check if doesnt cause seg fault
     auto it=find(parcels_to_deliver.begin(), parcels_to_deliver.end(),parcel);
-    return  (find(parcels_to_deliver.begin(), parcels_to_deliver.end(),parcel)!=parcels_to_deliver.end());
+    return  (it!=parcels_to_deliver.end());
     }
 bool DeliveryVehicle::addParcel(Parcel *parcel) {
     if(checkParcelExist(parcel) || parcels_to_deliver.size()==MAX_PARCEL_PER_VEHICLE)
