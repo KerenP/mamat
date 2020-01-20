@@ -20,8 +20,11 @@ bool DeliveryCompany ::  addVehicle(DeliveryVehicle* vehicle){
 bool DeliveryCompany :: receiveParcel(Parcel* parcel){
     if(!delivery_vehicle_list.vehicle_list.empty()) {
         unsigned searchAvailable = received_last_parcel+1;
+        if (received_last_parcel == delivery_vehicle_list.vehicle_list.size() - 1) {
+            searchAvailable=0;
+        }
         while(searchAvailable!=received_last_parcel ){
-            if (received_last_parcel == delivery_vehicle_list.vehicle_list.size() - 1) {
+            if (searchAvailable == delivery_vehicle_list.vehicle_list.size() - 1) {
                 searchAvailable=0;
             }
             else
