@@ -17,24 +17,24 @@ bool DeliveryCompany ::  addVehicle(DeliveryVehicle* vehicle){
     delivery_vehicle_list.vehicle_list.insert(delivery_vehicle_list.vehicle_list.begin(),vehicle);
     return true;
 }
-bool DeliveryCompany :: receiveParcel(Parcel* parcel){
-    if(!delivery_vehicle_list.vehicle_list.empty()) {
-        unsigned searchAvailable = received_last_parcel+1;
-        if (received_last_parcel == delivery_vehicle_list.vehicle_list.size() - 1) {
-            searchAvailable=0;
-        }
-        while(searchAvailable!=received_last_parcel ){
-            if (searchAvailable == delivery_vehicle_list.vehicle_list.size() - 1) {
-                searchAvailable=0;
+bool DeliveryCompany :: receiveParcel(Parcel* parcel) {
+    bool parcelRecieved= false;
+    int countRecievingAttempts =0;
+    unsigned searchAvailable=received_last_parcel==delivery_vehicle_list.vehicle_list.size() - 1?0:received_last_parcel+1;
+    if (!delivery_vehicle_list.vehicle_list.empty()) {
+        while(!parcelRecieved && countRecievingAttempts<delivery_vehicle_list.vehicle_list.size() ){
+            if (delivery_vehicle_list.vehicle_list[searchAvailable]->addParcel(parcel)) {
+                received_last_parcel = searchAvailable;
+                parcelRecieved = true;
+                countRecievingAttempts++;
             }
-            else
-                searchAvailable++;
-          if( delivery_vehicle_list.vehicle_list[searchAvailable]->addParcel(parcel)){
-              received_last_parcel = searchAvailable;
-              return true;
-          }
+            searchAvailable=((searchAvailable==delivery_vehicle_list.vehicle_list.size() - 1)?0:searchAvailable+1);
+        }
+        if(parcelRecieved) {
+            return true;
         }
     }
+
     delete parcel;
     return false;
 }
