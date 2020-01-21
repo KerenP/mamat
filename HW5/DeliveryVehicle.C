@@ -36,6 +36,7 @@ int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     int total_profit=0;
     int total_distance=0;
     int next_dest=0;
+    distance_traveled_today=0;
     if(parcels_to_deliver.empty())
         cout<< "No parcels to deliver for vehicle " << license_plate << endl;
     else

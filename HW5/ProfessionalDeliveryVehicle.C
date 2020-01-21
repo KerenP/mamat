@@ -18,15 +18,20 @@ bool ProfessionalDeliveryVehicle :: addParcel(Parcel* parcel){
 }
  int ProfessionalDeliveryVehicle :: performDeliveryDay(int* numberOfDeliveries){//TODO:where does numberOfDeliveries come from????
     int profit = DeliveryVehicle :: performDeliveryDay(numberOfDeliveries);
-    if(!numberOfDeliveries){
+    if(!*numberOfDeliveries){
         cout << "Revenue per distance: no distance" << endl;
         cout << "Revenue per parcel: no parcels" << endl;
     }
     else{
         int parcelsNum = *numberOfDeliveries;
         int avgProfitPerParcel = profit/parcelsNum;
-        int avgProfitPerDistance = profit/distance_traveled_today;//TODO:no need for double casting?
-        cout << "Revenue per distance: " << avgProfitPerDistance << endl;
+        if (distance_traveled_today != 0){
+            int avgProfitPerDistance = profit/distance_traveled_today;//TODO:no need for double casting?
+            cout << "Revenue per distance: " << avgProfitPerDistance << endl;
+        }
+        else {
+            cout << "Revenue per distance: no distance" << endl;
+        }
         cout << "Revenue per parcel: " << avgProfitPerParcel << endl;
     }
 return profit;
