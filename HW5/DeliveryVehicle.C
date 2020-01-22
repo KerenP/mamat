@@ -35,26 +35,31 @@ int DeliveryVehicle::performDeliveryDay(int* numberOfDeliveries){
     int distance=0;
     int total_profit=0;
     int total_distance=0;
-    int next_dest=0;
+    int distance_to_next_dest=0;
+    int nextDest=0;
+    int final_revenue=0;
     distance_traveled_today=0;
     if(parcels_to_deliver.empty())
         cout<< "No parcels to deliver for vehicle " << license_plate << endl;
     else
         cout << "Starting deliveries for vehicle " << license_plate << endl;
-    while(!parcels_to_deliver.empty() && (total_distance+next_dest < MAX_STATIONS_PER_DAY)){
+    while(!parcels_to_deliver.empty() && (total_distance+distance_to_next_dest < MAX_STATIONS_PER_DAY)){
         performSingleDelivery(distance);
         cout << "Fuel consumed: " << distance << " Revenue is: " << PARCEL_PRICE << endl;
         (*numberOfDeliveries)++;
         total_distance+=distance;
         if(!parcels_to_deliver.empty()){
-            next_dest=parcels_to_deliver.front()->getParcelDest();
+            nextDest =parcels_to_deliver.front()->getParcelDest();
+            distance_to_next_dest=(nextDest>station)?nextDest-station:10-station+nextDest;
         }
     }
-    total_profit=*numberOfDeliveries*PARCEL_PRICE;
-    int final_revenue=total_profit-total_distance-vehicle_quality;
-    distance_traveled_today=total_distance;
-    cout << "Total travel distance is " << total_distance << endl;
-    cout << "Total revenue is " << final_revenue << endl;
+    if((*numberOfDeliveries)!=0) {
+        total_profit=*numberOfDeliveries*PARCEL_PRICE;
+        final_revenue = total_profit - total_distance - vehicle_quality;
+        distance_traveled_today = total_distance;
+        cout << "Total travel distance is " << total_distance << endl;
+        cout << "Total revenue is " << final_revenue << endl;
+    }
     return final_revenue;
 }
 char* DeliveryVehicle :: getLicensePlate() const {return license_plate;}

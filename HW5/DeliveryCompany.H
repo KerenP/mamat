@@ -9,7 +9,8 @@ protected:
     DeliveryVehicleList delivery_vehicle_list;
     int income;
     int number_of_deliveries;
-    unsigned received_last_parcel;
+    //unsigned received_last_parcel;
+    DeliveryVehicle* received_last_parcel;
     bool has_parcels;
 public:
 	//c'tor

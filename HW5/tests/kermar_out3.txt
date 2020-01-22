@@ -14,53 +14,41 @@ Total revenue is -4
 Revenue per distance: -1
 Revenue per parcel: -4
 Starting deliveries for vehicle pro1
-Delivering parcel p1 to position 5
-Fuel consumed: 5 Revenue is: 4
-Total travel distance is 5
-Total revenue is -5
-Revenue per distance: -1
-Revenue per parcel: -5
-Starting deliveries for vehicle pro0
 Delivering parcel p0 to position 0
 Fuel consumed: 0 Revenue is: 4
+Delivering parcel p4 to position 2
+Fuel consumed: 2 Revenue is: 4
+Total travel distance is 2
+Total revenue is 2
+Revenue per distance: 1
+Revenue per parcel: 1
+Starting deliveries for vehicle pro0
 Delivering parcel p2 to position 4
 Fuel consumed: 4 Revenue is: 4
 Total travel distance is 4
-Total revenue is 1
+Total revenue is -3
 Revenue per distance: 0
-Revenue per parcel: 0
-Total revenue for company is -8
+Revenue per parcel: -3
+Total revenue for company is -5
 Starting days deliveries:
 No parcels to deliver for vehicle pro3
-Total travel distance is 0
-Total revenue is -3
 Revenue per distance: no distance
 Revenue per parcel: no parcels
-Starting deliveries for vehicle pro2
-Delivering parcel p7 to position 5
-Fuel consumed: 2 Revenue is: 4
-Total travel distance is 2
-Total revenue is -3
-Revenue per distance: -1
-Revenue per parcel: -3
+No parcels to deliver for vehicle pro2
+Revenue per distance: no distance
+Revenue per parcel: no parcels
 No parcels to deliver for vehicle pro1
-Total travel distance is 0
-Total revenue is -4
 Revenue per distance: no distance
 Revenue per parcel: no parcels
 No parcels to deliver for vehicle pro0
-Total travel distance is 0
-Total revenue is -3
 Revenue per distance: no distance
 Revenue per parcel: no parcels
-Total revenue for company is -13
-Company balance is now 80
-Till now company has delivered 6 parcels
+Total revenue for company is 0
+Company balance is now 96
+Till now company has delivered 5 parcels
 
 Starting days deliveries:
 No parcels to deliver for vehicle neesan
-Total travel distance is 0
-Total revenue is -3
 Starting deliveries for vehicle korkinet
 Delivering parcel r1 to position 7
 Fuel consumed: 7 Revenue is: 14
@@ -73,24 +61,10 @@ Total travel distance is 0
 Total revenue is -1
 Revenue per distance: no distance
 Revenue per parcel: -1
-Total revenue for company is -2
+Total revenue for company is 1
 
 Starting days deliveries:
 Starting deliveries for vehicle neesan
-Delivering parcel r5 to position 8
-Fuel consumed: 8 Revenue is: 4
-Delivering parcel r8 to position 2
-Fuel consumed: 4 Revenue is: 4
-Total travel distance is 12
-Total revenue is -7
-Starting deliveries for vehicle korkinet
-Delivering parcel r2 to position 5
-Fuel consumed: 8 Revenue is: 16
-Delivering parcel r3 to position 3
-Fuel consumed: 8 Revenue is: 16
-Total travel distance is 16
-Total revenue is 11
-Starting deliveries for vehicle feeat
 Delivering parcel r4 to position 1
 Fuel consumed: 1 Revenue is: 4
 Delivering parcel r7 to position 4
@@ -100,33 +74,47 @@ Fuel consumed: 3 Revenue is: 4
 Delivering parcel r13 to position 1
 Fuel consumed: 4 Revenue is: 4
 Total travel distance is 11
-Total revenue is 0
+Total revenue is 2
+Starting deliveries for vehicle korkinet
+Delivering parcel r2 to position 5
+Fuel consumed: 8 Revenue is: 16
+Delivering parcel r5 to position 8
+Fuel consumed: 3 Revenue is: 6
+Total travel distance is 11
+Total revenue is 6
+Starting deliveries for vehicle feeat
+Delivering parcel r3 to position 3
+Fuel consumed: 3 Revenue is: 4
+Delivering parcel r6 to position 6
+Fuel consumed: 3 Revenue is: 4
+Delivering parcel r9 to position 0
+Fuel consumed: 4 Revenue is: 4
+Total travel distance is 10
+Total revenue is -3
 Revenue per distance: 0
-Revenue per parcel: 0
-Total revenue for company is 4
-Till now company has delivered 10 parcels
+Revenue per parcel: -1
+Total revenue for company is 5
+Till now company has delivered 11 parcels
 
 Starting days deliveries:
-Starting deliveries for vehicle neesan
-Delivering parcel r11 to position 5
-Fuel consumed: 3 Revenue is: 4
-Delivering parcel r14 to position 8
-Fuel consumed: 3 Revenue is: 4
-Total travel distance is 6
-Total revenue is -1
+No parcels to deliver for vehicle neesan
 Starting deliveries for vehicle korkinet
-Delivering parcel r6 to position 6
-Fuel consumed: 3 Revenue is: 6
-Delivering parcel r9 to position 0
+Delivering parcel r8 to position 2
 Fuel consumed: 4 Revenue is: 8
-Delivering parcel r12 to position 3
+Delivering parcel r11 to position 5
+Fuel consumed: 3 Revenue is: 6
+Delivering parcel r14 to position 8
 Fuel consumed: 3 Revenue is: 6
 Total travel distance is 10
 Total revenue is 5
-No parcels to deliver for vehicle feeat
-Total travel distance is 0
-Total revenue is -5
-Revenue per distance: no distance
-Revenue per parcel: no parcels
-Total revenue for company is -1
-Company balance is now 251
+Starting deliveries for vehicle feeat
+Delivering parcel r12 to position 3
+Fuel consumed: 3 Revenue is: 4
+Delivering parcel r15 to position 6
+Fuel consumed: 3 Revenue is: 4
+Total travel distance is 6
+Total revenue is -3
+Revenue per distance: 0
+Revenue per parcel: -1
+Total revenue for company is 2
+Company balance is now 258

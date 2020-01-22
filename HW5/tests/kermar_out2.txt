@@ -24,17 +24,15 @@ Total revenue is 7
 Starting deliveries for vehicle soosita
 Delivering parcel gum to position 4
 Fuel consumed: 4 Revenue is: 8
-Delivering parcel code to position 3
-Fuel consumed: 9 Revenue is: 18
-Total travel distance is 13
-Total revenue is 10
-Total revenue for company is 17
-Till now company has delivered 4 parcels
+Total travel distance is 4
+Total revenue is 1
+Total revenue for company is 8
+Till now company has delivered 3 parcels
 Starting days deliveries:
 No parcels to deliver for vehicle riksha
-Total travel distance is 0
-Total revenue is -5
-No parcels to deliver for vehicle soosita
-Total travel distance is 0
-Total revenue is -3
-Total revenue for company is -8
+Starting deliveries for vehicle soosita
+Delivering parcel code to position 3
+Fuel consumed: 9 Revenue is: 18
+Total travel distance is 9
+Total revenue is 6
+Total revenue for company is 6
