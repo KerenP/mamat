@@ -3,18 +3,22 @@ ProfessionalDeliveryVehicle ::ProfessionalDeliveryVehicle(const char *ID, Qualit
 {vehicle_type=professional;}
 bool ProfessionalDeliveryVehicle :: addParcel(Parcel* parcel){
     int last_dest;
+    int distance_to_last =0;
     if(!parcels_to_deliver.empty()) {
         last_dest = parcels_to_deliver.back()->getParcelDest();
 
         if (checkParcelExist(parcel) || parcels_to_deliver.size() == MAX_PARCEL_PER_VEHICLE)
             return false;
         int new_parcel_dest = parcel->getParcelDest();
-        int distance_to_last =last_dest < new_parcel_dest ? new_parcel_dest - last_dest : 10 - last_dest + new_parcel_dest;
-        if (distance_to_last > PARCEL_PRICE)
-            return false;
+        distance_to_last = last_dest < new_parcel_dest ? new_parcel_dest - last_dest : 10 - last_dest + new_parcel_dest;
     }
-        parcels_to_deliver.push_back(parcel);
-        return true;
+    else{
+        distance_to_last=parcel->getParcelDest();
+    }
+    if (distance_to_last > PARCEL_PRICE)
+        return false;
+    parcels_to_deliver.push_back(parcel);
+    return true;
 }
  int ProfessionalDeliveryVehicle :: performDeliveryDay(int* numberOfDeliveries){//TODO:where does numberOfDeliveries come from????
     int profit = DeliveryVehicle :: performDeliveryDay(numberOfDeliveries);

@@ -1,0 +1,40 @@
+Starting days deliveries:
+Starting deliveries for vehicle cangoo
+Delivering parcel treasure to position 2
+Fuel consumed: 2 Revenue is: 4
+Total travel distance is 2
+Total revenue is -2
+Revenue per distance: -1
+Revenue per parcel: -2
+Starting deliveries for vehicle soobaroo
+Delivering parcel book to position 5
+Fuel consumed: 5 Revenue is: 4
+Total travel distance is 5
+Total revenue is -6
+Total revenue for company is -8
+Company balance is now 42
+Starting days deliveries:
+Starting deliveries for vehicle riksha
+Delivering parcel hot_air to position 3
+Fuel consumed: 3 Revenue is: 6
+Delivering parcel mice to position 2
+Fuel consumed: 9 Revenue is: 18
+Total travel distance is 12
+Total revenue is 7
+Starting deliveries for vehicle soosita
+Delivering parcel gum to position 4
+Fuel consumed: 4 Revenue is: 8
+Delivering parcel code to position 3
+Fuel consumed: 9 Revenue is: 18
+Total travel distance is 13
+Total revenue is 10
+Total revenue for company is 17
+Till now company has delivered 4 parcels
+Starting days deliveries:
+No parcels to deliver for vehicle riksha
+Total travel distance is 0
+Total revenue is -5
+No parcels to deliver for vehicle soosita
+Total travel distance is 0
+Total revenue is -3
+Total revenue for company is -8

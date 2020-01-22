@@ -10,6 +10,7 @@ protected:
     int income;
     int number_of_deliveries;
     unsigned received_last_parcel;
+    bool has_parcels;
 public:
 	//c'tor
 	DeliveryCompany(int money=INITIAL_MONEY);
