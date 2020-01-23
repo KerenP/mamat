@@ -13,7 +13,7 @@ bool ProfessionalDeliveryVehicle :: addParcel(Parcel* parcel){
         distance_to_last = last_dest < new_parcel_dest ? new_parcel_dest - last_dest : 10 - last_dest + new_parcel_dest;
     }
     else{
-        distance_to_last=parcel->getParcelDest();
+        distance_to_last=parcel->getParcelDest()-station;
     }
     if (distance_to_last > PARCEL_PRICE)
         return false;
