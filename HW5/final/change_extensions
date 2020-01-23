@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+#****************************************************************
+#* function name: change_extensions
+#* description  : change given extention(first parameter) of 
+#  files in current directory to new extention(second parameter)
+#* parameter    : old extention, new extention
+#* return value : none
+#****************************************************************
+for file in *.$1
+do
+	mv $file ${file%$1}$2
+done
