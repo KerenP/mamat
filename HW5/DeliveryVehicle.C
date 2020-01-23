@@ -1,9 +1,9 @@
 #include "DeliveryVehicle.H"
 DeliveryVehicle::DeliveryVehicle(const char *ID, Quality quality) : vehicle_quality(quality), station(0),
-parcels_to_deliver(), vehicle_type(regular), distance_traveled_today(0){
+distance_traveled_today(0),vehicle_type(regular),parcels_to_deliver()  {
     license_plate=new char[strlen(ID)+1];
     strcpy(license_plate,ID);}
-bool DeliveryVehicle::checkParcelExist(Parcel* parcel){ //TODO:check if doesnt cause seg fault
+bool DeliveryVehicle::checkParcelExist(Parcel* parcel){
     auto it=find(parcels_to_deliver.begin(), parcels_to_deliver.end(),parcel);
     return  (it!=parcels_to_deliver.end());
     }
@@ -14,7 +14,7 @@ bool DeliveryVehicle::addParcel(Parcel *parcel) {
     return true;
 }
  bool DeliveryVehicle::performSingleDelivery(int &distance){
-    if(parcels_to_deliver.empty()) //TODO: check if better to place in PreformDeliveryDay
+    if(parcels_to_deliver.empty())
         return false;
     Parcel* parcelToDeliver=parcels_to_deliver.front();
     if(parcelToDeliver->getParcelDest()>=station){

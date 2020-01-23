@@ -18,10 +18,8 @@ bool DeliveryCompany ::  addVehicle(DeliveryVehicle* vehicle){
     return true;
 }
 bool DeliveryCompany :: receiveParcel(Parcel* parcel) {
-    bool parcelRecieved= false;
-    int countRecievingAttempts =0;
+    unsigned countRecievingAttempts =0;
     auto lastRecievedParcel=delivery_vehicle_list.vehicle_list.begin();
-    //unsigned searchAvailable=((received_last_parcel==delivery_vehicle_list.vehicle_list.size() - 1)||!has_parcels)?0:received_last_parcel+1;
     unsigned searchAvailable=0;
     if (!delivery_vehicle_list.vehicle_list.empty()) {
         lastRecievedParcel=find(delivery_vehicle_list.vehicle_list.begin(),delivery_vehicle_list.vehicle_list.end(),received_last_parcel);
@@ -30,7 +28,6 @@ bool DeliveryCompany :: receiveParcel(Parcel* parcel) {
                 if (curr_vehicle->addParcel(parcel)) {
                     received_last_parcel = curr_vehicle;
                     has_parcels=true;
-                    //parcelRecieved = true;
                     return true;
                 }
                 countRecievingAttempts++;
@@ -41,20 +38,15 @@ bool DeliveryCompany :: receiveParcel(Parcel* parcel) {
             searchAvailable = ((indexOfLastRecieved == (delivery_vehicle_list.vehicle_list.size() - 1) )|| (!has_parcels))
                               ? 0 : indexOfLastRecieved + 1;
         }
-        while(!parcelRecieved && countRecievingAttempts<delivery_vehicle_list.vehicle_list.size() ){
+        while(  countRecievingAttempts<delivery_vehicle_list.vehicle_list.size() ){
             if (delivery_vehicle_list.vehicle_list[searchAvailable]->addParcel(parcel)) {
-                //received_last_parcel = searchAvailable;
                 received_last_parcel=delivery_vehicle_list.vehicle_list[searchAvailable];
-                //parcelRecieved = true;
                 has_parcels=true;
                 return true;
             }
             countRecievingAttempts++;
             searchAvailable=((searchAvailable==delivery_vehicle_list.vehicle_list.size() - 1)?0:searchAvailable+1);
         }
-       /* if(parcelRecieved) {
-            return true;
-        }*/
     }
     delete parcel;
     return false;
